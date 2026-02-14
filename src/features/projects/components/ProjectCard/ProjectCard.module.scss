@@ -1,0 +1,23 @@
+.card {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  min-height: 180px; // Kart yüksekliği
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--mantine-shadow-md);
+  }
+}
+
+.description {
+  flex-grow: 1;
+  min-height: 4.5rem; // ~3 lines
+}
+
+.duration {
+  font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+  letter-spacing: -0.5px;
+}

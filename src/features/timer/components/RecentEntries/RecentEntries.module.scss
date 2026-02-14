@@ -1,0 +1,45 @@
+.entryCard {
+  padding: 12px 16px;
+  border-radius: var(--mantine-radius-md);
+  background: var(--mantine-color-dark-7);
+  border: 1px solid var(--mantine-color-dark-5);
+  transition:
+    transform 0.1s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+
+  &:hover {
+    background: var(--mantine-color-dark-6);
+    border-color: var(--mantine-color-primary-6);
+    transform: translateY(-1px);
+
+    .resumeBtn {
+      opacity: 1;
+    }
+  }
+
+  /* Light mode adjustments */
+  [data-mantine-color-scheme='light'] & {
+    background: var(--mantine-color-white);
+    border-color: var(--mantine-color-gray-3);
+
+    &:hover {
+      background: var(--mantine-color-gray-0);
+      border-color: var(--mantine-color-primary-4);
+    }
+  }
+}
+
+.duration {
+  font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+  letter-spacing: -0.5px;
+}
+
+.resumeBtn {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+
+  &:focus-visible {
+    opacity: 1;
+  }
+}

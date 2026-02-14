@@ -1,0 +1,125 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2026-02-14 16:12+0300\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:32
+msgid "Accent Color"
+msgstr "Accent Color"
+
+#: src/features/projects/components/ProjectCard/ProjectCard.tsx:77
+msgid "Active"
+msgstr "Active"
+
+#: src/features/projects/components/ProjectCard/ProjectCard.tsx:81
+msgid "Archived"
+msgstr "Archived"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:35
+msgid "Choose the primary color for the app"
+msgstr "Choose the primary color for the app"
+
+#: src/features/timer/components/RecentEntries/RecentEntries.tsx:83
+msgid "Continue this task"
+msgstr "Continue this task"
+
+#: src/features/projects/components/ProjectCard/ProjectCard.tsx:57
+msgid "Delete"
+msgstr "Delete"
+
+#: src/features/timesheet/components/TimeEntryCard/TimeEntryCard.tsx:55
+msgid "Delete entry"
+msgstr "Delete entry"
+
+#: src/features/projects/components/ProjectCard/ProjectCard.tsx:50
+msgid "Edit"
+msgstr "Edit"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:60
+msgid "Language"
+msgstr "Language"
+
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:13
+msgid "Manage your projects"
+msgstr "Manage your projects"
+
+#: src/features/projects/components/ProjectCard/ProjectCard.tsx:71
+#: src/features/timer/components/RecentEntries/RecentEntries.tsx:69
+#: src/features/timesheet/components/TimeEntryCard/TimeEntryCard.tsx:43
+msgid "No description"
+msgstr "No description"
+
+#: src/features/timer/components/RecentEntries/RecentEntries.tsx:40
+msgid "No entries yet for today."
+msgstr "No entries yet for today."
+
+#: src/features/timer/components/RecentEntries/RecentEntries.tsx:72
+#: src/features/timesheet/components/TimeEntryCard/TimeEntryCard.tsx:46
+msgid "No Project"
+msgstr "No Project"
+
+#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:31
+msgid "No time entries found"
+msgstr "No time entries found"
+
+#: src/features/timer/components/TimerControls/TimerControls.tsx:67
+msgid "Pause Timer"
+msgstr "Pause Timer"
+
+#: src/features/timer/components/TimerPage/TimerPage.tsx:79
+msgid "Project"
+msgstr "Project"
+
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:12
+msgid "Projects"
+msgstr "Projects"
+
+#: src/features/reports/components/ReportsPage/ReportsPage.tsx:12
+msgid "Reports"
+msgstr "Reports"
+
+#: src/features/timer/components/TimerControls/TimerControls.tsx:80
+msgid "Resume Timer"
+msgstr "Resume Timer"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:26
+msgid "Settings"
+msgstr "Settings"
+
+#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:33
+msgid "Start the timer to track your work."
+msgstr "Start the timer to track your work."
+
+#: src/features/timer/components/TimerControls/TimerControls.tsx:38
+msgid "Start Timer"
+msgstr "Start Timer"
+
+#: src/features/timer/components/TimerControls/TimerControls.tsx:53
+msgid "Stop & Save"
+msgstr "Stop & Save"
+
+#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:42
+msgid "Timesheet"
+msgstr "Timesheet"
+
+#: src/features/timer/components/RecentEntries/RecentEntries.tsx:48
+msgid "Today's Activity"
+msgstr "Today's Activity"
+
+#: src/features/reports/components/ReportsPage/ReportsPage.tsx:13
+msgid "View your reports and statistics"
+msgstr "View your reports and statistics"
+
+#: src/features/timer/components/TimerPage/TimerPage.tsx:70
+msgid "What are you working on?"
+msgstr "What are you working on?"

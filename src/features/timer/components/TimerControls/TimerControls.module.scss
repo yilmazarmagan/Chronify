@@ -1,0 +1,42 @@
+.controls {
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+.mainButton {
+  transition:
+    transform 0.1s ease,
+    filter 0.2s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    filter: grayscale(1);
+  }
+}
+
+.secondaryButton {
+  transition:
+    transform 0.1s ease,
+    background-color 0.2s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    background-color: var(--mantine-color-red-filled-hover);
+    color: var(--mantine-color-white);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
