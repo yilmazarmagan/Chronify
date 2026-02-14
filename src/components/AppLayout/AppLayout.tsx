@@ -68,6 +68,7 @@ export function AppLayout() {
         </div>
 
         <div className={classes.navFooter}>
+          <div className={classes.version}>v0.1.0</div>
           {status !== TimerStatusEnum.Idle && (
             <div
               className={classes.timerIndicator}

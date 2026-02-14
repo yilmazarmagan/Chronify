@@ -1,10 +1,17 @@
+import { TIME_FORMAT } from '@constants/date.constants';
+import type { Project } from '@app-types/project.types';
+import type { TimeEntry } from '@app-types/time-entry.types';
+import { formatDurationString } from '@utils/date.utils';
 import dayjs from 'dayjs';
-import { TIME_FORMAT } from '../constants';
-import { formatDurationString } from './date.utils';
 import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable';
+import { autoTable } from 'jspdf-autotable';
 
-export function convertToCSV(data: any[]): string {
+export type CSVDataRow = Record<
+  string,
+  string | number | boolean | null | undefined
+>;
+
+export function convertToCSV(data: CSVDataRow[]): string {
   if (data.length === 0) return '';
 
   const headers = Object.keys(data[0]);
@@ -42,7 +49,10 @@ export function downloadFile(
   document.body.removeChild(link);
 }
 
-export function exportTimeEntriesToCSV(entries: any[], projects: any[]) {
+export function exportTimeEntriesToCSV(
+  entries: TimeEntry[],
+  projects: Project[],
+) {
   const csvData = entries.map((entry) => {
     const project = projects.find((p) => p.id === entry.projectId);
     return {
@@ -61,7 +71,10 @@ export function exportTimeEntriesToCSV(entries: any[], projects: any[]) {
   downloadFile(csv, fileName, 'text/csv;charset=utf-8;');
 }
 
-export function exportTimeEntriesToPDF(entries: any[], projects: any[]) {
+export function exportTimeEntriesToPDF(
+  entries: TimeEntry[],
+  projects: Project[],
+) {
   const doc = new jsPDF();
   const totalDuration = entries.reduce((acc, curr) => acc + curr.duration, 0);
 

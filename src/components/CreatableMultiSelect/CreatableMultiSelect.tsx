@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MultiSelect, MultiSelectProps } from '@mantine/core';
+import { MultiSelect, MultiSelectProps, ComboboxItem } from '@mantine/core';
 
 interface CreatableMultiSelectProps extends MultiSelectProps {
   onCreate?: (query: string) => string | void;
@@ -18,18 +18,18 @@ export function CreatableMultiSelect({
   const searchValue = controlledSearchValue ?? internalSearchValue;
 
   // Handle data including the "Create" option
-  const isValueInOptions = (data as any[]).some((item) => {
+  const isValueInOptions = (data as (string | ComboboxItem)[]).some((item) => {
     const itemValue = typeof item === 'string' ? item : item.value;
     return itemValue.toLowerCase() === searchValue.trim().toLowerCase();
   });
 
-  const displayData = [...(data as any[])];
+  const displayData = [...(data as (string | ComboboxItem)[])];
 
   if (searchValue.trim().length > 0 && !isValueInOptions && getCreateLabel) {
     displayData.push({
       value: searchValue,
       label: getCreateLabel(searchValue),
-    });
+    } as ComboboxItem);
   }
 
   const handleSearchChange = (val: string) => {
@@ -41,7 +41,7 @@ export function CreatableMultiSelect({
     const lastValue = values[values.length - 1];
     const isNew =
       lastValue &&
-      !(data as any[]).some(
+      !(data as (string | ComboboxItem)[]).some(
         (item) => (typeof item === 'string' ? item : item.value) === lastValue,
       );
 

@@ -22,7 +22,7 @@ export default defineConfig(async () => ({
       '@features': '/src/features',
       '@providers': '/src/providers',
       '@utils': '/src/utils',
-      '@types': '/src/types',
+      '@app-types': '/src/types',
       '@lib': '/src/lib',
       '@hooks': '/src/hooks',
     },

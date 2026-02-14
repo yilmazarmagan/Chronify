@@ -441,7 +441,9 @@ export function buildTheme(primaryColor: string) {
 - [x] Tagging system (MultiSelect)
 - [x] Dark / Light theme toggle (Settings)
 - [x] Keyboard shortcuts (⌘+S save, Space timer toggle)
-- [x] Idle reminder (notification)
+- [x] Idle reminder (dynamic notification threshold)
+- [x] System Tray support (Tauri v2)
+- [x] Version Display (sidebar)
 - [ ] App icon & splash screen
 - [ ] macOS + Windows build & distribution
 

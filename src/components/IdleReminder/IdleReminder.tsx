@@ -40,7 +40,7 @@ export function IdleReminder() {
         autoClose: 10000,
       });
     }
-  }, [idle, status, _]);
+  }, [idle, status, _, data.settings.idleReminderMinutes]);
 
   return null;
 }
