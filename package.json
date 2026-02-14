@@ -12,8 +12,7 @@
     "lint:fix": "oxlint --fix src/",
     "format": "oxfmt --write src/",
     "format:check": "oxfmt --check src/",
-    "intl:extract": "lingui extract --clean",
-    "intl:compile": "lingui compile"
+    "intl:extract": "lingui extract --clean"
   },
   "dependencies": {
     "@lingui/core": "5.9.1",

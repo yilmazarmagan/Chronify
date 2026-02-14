@@ -4,12 +4,12 @@ import { TimerStatusEnum } from '@enums/timer-status.enum';
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { Container, Group, Select, Stack, TextInput } from '@mantine/core';
+import { useHotkeys } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
 import { useAppData } from '@providers/context';
+import { useTimer } from '@providers/TimerProvider';
 import { IconHash, IconTags } from '@tabler/icons-react';
 import dayjs from 'dayjs';
-import { useRef, useState } from 'react';
-import { useTimer } from '../../hooks/useTimer';
 import { RecentEntries } from '../RecentEntries';
 import { TimerControls } from '../TimerControls';
 import { TimerDisplay } from '../TimerDisplay';
@@ -18,15 +18,30 @@ import classes from './TimerPage.module.scss';
 export function TimerPage() {
   const { _ } = useLingui();
   const { data, addTimeEntry, addTag } = useAppData();
-  const { status, elapsed, start, pause, resume, stop } = useTimer();
+  const {
+    status,
+    elapsed,
+    start,
+    pause,
+    resume,
+    stop,
+    activeEntry,
+    setMetadata,
+  } = useTimer();
 
-  const [description, setDescription] = useState('');
-  const [projectId, setProjectId] = useState<string | null>(null);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const startTimeRef = useRef<string | null>(null);
+  useHotkeys([
+    [
+      'space',
+      () => {
+        if (status === TimerStatusEnum.Idle) handleStart();
+        else if (status === TimerStatusEnum.Running) pause();
+        else if (status === TimerStatusEnum.Paused) resume();
+      },
+    ],
+  ]);
 
   const handleStart = () => {
-    if (!projectId) {
+    if (!activeEntry.projectId) {
       notifications.show({
         title: _(msg`Project Required`),
         message: _(msg`Please select a project to start the timer.`),
@@ -35,7 +50,7 @@ export function TimerPage() {
       return;
     }
 
-    if (!description.trim()) {
+    if (!activeEntry.description.trim()) {
       notifications.show({
         title: _(msg`Description Required`),
         message: _(
@@ -46,38 +61,27 @@ export function TimerPage() {
       return;
     }
 
-    if (!startTimeRef.current) {
-      startTimeRef.current = new Date().toISOString();
-    }
-    start();
+    start(activeEntry.projectId, activeEntry.description, activeEntry.tags);
   };
 
   const handleStop = () => {
-    const duration = stop();
-    const endTime = new Date().toISOString();
+    const result = stop();
 
-    if (duration > 0) {
+    if (result.duration > 0) {
       addTimeEntry({
-        projectId: projectId || undefined,
-        description: description,
-        startTime: startTimeRef.current || new Date().toISOString(),
-        endTime: endTime,
-        duration: duration,
-        date: dayjs(startTimeRef.current).format(DATE_FORMAT),
-        tags: selectedTags,
+        projectId: result.projectId,
+        description: result.description,
+        startTime: result.startTime,
+        endTime: result.endTime,
+        duration: result.duration,
+        date: dayjs(result.startTime).format(DATE_FORMAT),
+        tags: result.tags,
       });
     }
-
-    // Reset local state
-    setDescription('');
-    setProjectId(null);
-    setSelectedTags([]);
-    startTimeRef.current = null;
   };
 
   const handleResume = (projectId: string, description: string) => {
-    setProjectId(projectId);
-    setDescription(description);
+    setMetadata({ projectId, description });
   };
 
   const projectOptions = data.projects.map((p) => ({
@@ -96,10 +100,6 @@ export function TimerPage() {
     return newTag.id;
   };
 
-  if (data.projects.length === 0) {
-    // ... (no projects UI remains same)
-  }
-
   return (
     <Container size="sm" py="xl" className={classes.container}>
       <Stack gap="xl" align="center">
@@ -108,8 +108,10 @@ export function TimerPage() {
           <Group w="100%" align="flex-end" className={classes.inputGroup}>
             <TextInput
               placeholder={_(msg`What are you working on?`)}
-              value={description}
-              onChange={(e) => setDescription(e.currentTarget.value)}
+              value={activeEntry.description}
+              onChange={(e) =>
+                setMetadata({ description: e.currentTarget.value })
+              }
               disabled={status !== TimerStatusEnum.Idle}
               size="md"
               className={classes.descriptionInput}
@@ -118,8 +120,8 @@ export function TimerPage() {
             <Select
               placeholder={_(msg`Project`)}
               data={projectOptions}
-              value={projectId}
-              onChange={setProjectId}
+              value={activeEntry.projectId || null}
+              onChange={(val) => setMetadata({ projectId: val || undefined })}
               disabled={status !== TimerStatusEnum.Idle}
               size="md"
               searchable
@@ -135,8 +137,8 @@ export function TimerPage() {
           <CreatableMultiSelect
             placeholder={_(msg`Add tags...`)}
             data={tagOptions}
-            value={selectedTags}
-            onChange={setSelectedTags}
+            value={activeEntry.tags}
+            onChange={(tags) => setMetadata({ tags })}
             disabled={status !== TimerStatusEnum.Idle}
             searchable
             clearable

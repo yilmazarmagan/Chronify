@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:124
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:175
 msgid "Accent Color"
 msgstr "Accent Color"
 
@@ -21,11 +21,11 @@ msgstr "Accent Color"
 msgid "Active"
 msgstr "Active"
 
-#: src/features/projects/components/ProjectModal/ProjectModal.tsx:118
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:133
 msgid "Active Project"
 msgstr "Active Project"
 
-#: src/features/timer/components/TimerPage/TimerPage.tsx:148
+#: src/features/timer/components/TimerPage/TimerPage.tsx:138
 msgid "Add tags..."
 msgstr "Add tags..."
 
@@ -33,7 +33,7 @@ msgstr "Add tags..."
 msgid "All"
 msgstr "All"
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:106
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:111
 msgid "All data has been cleared."
 msgstr "All data has been cleared."
 
@@ -42,11 +42,15 @@ msgstr "All data has been cleared."
 msgid "All Projects"
 msgstr "All Projects"
 
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:129
+msgid "Appearance"
+msgstr "Appearance"
+
 #: src/features/projects/components/ProjectCard/ProjectCard.tsx:88
 msgid "Archived"
 msgstr "Archived"
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:96
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:101
 msgid "Are you sure you want to delete all entries, projects, and settings? This action is permanent."
 msgstr "Are you sure you want to delete all entries, projects, and settings? This action is permanent."
 
@@ -55,27 +59,31 @@ msgstr "Are you sure you want to delete all entries, projects, and settings? Thi
 msgid "Are you sure you want to delete project \"{0}\"? This action cannot be undone."
 msgstr "Are you sure you want to delete project \"{0}\"? This action cannot be undone."
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:69
+#: src/components/IdleReminder/IdleReminder.tsx:21
+msgid "Are you working?"
+msgstr "Are you working?"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:74
 msgid "Backup Restored"
 msgstr "Backup Restored"
 
-#: src/features/projects/components/ProjectModal/ProjectModal.tsx:128
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:143
 #: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:44
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:56
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:100
-#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:158
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:61
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:105
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:164
 msgid "Cancel"
 msgstr "Cancel"
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:127
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:178
 msgid "Choose the primary color for the app"
 msgstr "Choose the primary color for the app"
 
-#: src/features/projects/components/ProjectModal/ProjectModal.tsx:101
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:116
 msgid "Color"
 msgstr "Color"
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:48
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:53
 msgid "Confirm Backup Restoration"
 msgstr "Confirm Backup Restoration"
 
@@ -83,11 +91,11 @@ msgstr "Confirm Backup Restoration"
 msgid "Continue this task"
 msgstr "Continue this task"
 
-#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:161
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:167
 msgid "Create Entry"
 msgstr "Create Entry"
 
-#: src/features/projects/components/ProjectModal/ProjectModal.tsx:131
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:146
 msgid "Create Project"
 msgstr "Create Project"
 
@@ -99,11 +107,15 @@ msgstr "Create your first project to get started."
 msgid "Daily Activity"
 msgstr "Daily Activity"
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:169
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:165
+msgid "Dark"
+msgstr "Dark"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:222
 msgid "Data Management"
 msgstr "Data Management"
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:105
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:110
 msgid "Data Reset"
 msgstr "Data Reset"
 
@@ -120,12 +132,12 @@ msgstr "Delete entry"
 msgid "Delete Project"
 msgstr "Delete Project"
 
-#: src/features/projects/components/ProjectModal/ProjectModal.tsx:92
-#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:123
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:107
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:130
 msgid "Description"
 msgstr "Description"
 
-#: src/features/timer/components/TimerPage/TimerPage.tsx:52
+#: src/features/timer/components/TimerPage/TimerPage.tsx:55
 msgid "Description Required"
 msgstr "Description Required"
 
@@ -141,23 +153,23 @@ msgstr "Edit"
 msgid "Edit entry"
 msgstr "Edit entry"
 
-#: src/features/projects/components/ProjectModal/ProjectModal.tsx:73
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:88
 msgid "Edit Project"
 msgstr "Edit Project"
 
-#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:103
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:110
 msgid "Edit Time Entry"
 msgstr "Edit Time Entry"
 
-#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:150
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:156
 msgid "End Time"
 msgstr "End Time"
 
-#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:73
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:80
 msgid "End time must be after start time"
 msgstr "End time must be after start time"
 
-#: src/features/projects/components/ProjectModal/ProjectModal.tsx:84
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:99
 msgid "Enter project name"
 msgstr "Enter project name"
 
@@ -177,33 +189,41 @@ msgstr "Export as CSV"
 msgid "Export as PDF"
 msgstr "Export as PDF"
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:183
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:236
 msgid "Export Backup (JSON)"
 msgstr "Export Backup (JSON)"
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:173
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:226
 msgid "Export your data for backup or import an existing backup file."
 msgstr "Export your data for backup or import an existing backup file."
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:194
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:247
 msgid "Import Backup"
 msgstr "Import Backup"
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:76
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:81
 msgid "Import Failed"
 msgstr "Import Failed"
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:56
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:61
 msgid "Import Now"
 msgstr "Import Now"
 
-#: src/features/projects/components/ProjectModal/ProjectModal.tsx:120
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:135
 msgid "Inactive projects won't appear in the timer selection"
 msgstr "Inactive projects won't appear in the timer selection"
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:152
+#: src/components/IdleReminder/IdleReminder.tsx:23
+msgid "It looks like you're active but haven't started the timer yet."
+msgstr "It looks like you're active but haven't started the timer yet."
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:205
 msgid "Language"
 msgstr "Language"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:156
+msgid "Light"
+msgstr "Light"
 
 #: src/features/reports/components/ReportsHeader/ReportsHeader.tsx:64
 msgid "Month"
@@ -213,16 +233,16 @@ msgstr "Month"
 msgid "Most Active Project"
 msgstr "Most Active Project"
 
-#: src/features/projects/components/ProjectModal/ProjectModal.tsx:48
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:63
 msgid "Name must be at least 2 characters"
 msgstr "Name must be at least 2 characters"
 
-#: src/features/projects/components/ProjectModal/ProjectModal.tsx:73
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:88
 #: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:66
 msgid "New Project"
 msgstr "New Project"
 
-#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:103
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:110
 msgid "New Time Entry"
 msgstr "New Time Entry"
 
@@ -258,7 +278,7 @@ msgstr "No projects found"
 msgid "No time entries found"
 msgstr "No time entries found"
 
-#: src/features/projects/components/ProjectModal/ProjectModal.tsx:93
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:108
 msgid "Optional description"
 msgstr "Optional description"
 
@@ -270,24 +290,24 @@ msgstr "Pause Timer"
 msgid "Pick dates range"
 msgstr "Pick dates range"
 
-#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:151
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:157
 msgid "Pick end date and time"
 msgstr "Pick end date and time"
 
-#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:143
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:149
 msgid "Pick start date and time"
 msgstr "Pick start date and time"
 
-#: src/features/timer/components/TimerPage/TimerPage.tsx:54
+#: src/features/timer/components/TimerPage/TimerPage.tsx:57
 msgid "Please enter a description for what you are working on."
 msgstr "Please enter a description for what you are working on."
 
-#: src/features/timer/components/TimerPage/TimerPage.tsx:44
+#: src/features/timer/components/TimerPage/TimerPage.tsx:47
 msgid "Please select a project to start the timer."
 msgstr "Please select a project to start the timer."
 
-#: src/features/timer/components/TimerPage/TimerPage.tsx:131
-#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:114
+#: src/features/timer/components/TimerPage/TimerPage.tsx:121
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:121
 msgid "Project"
 msgstr "Project"
 
@@ -295,15 +315,15 @@ msgstr "Project"
 msgid "Project Distribution"
 msgstr "Project Distribution"
 
-#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:69
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:76
 msgid "Project is required"
 msgstr "Project is required"
 
-#: src/features/projects/components/ProjectModal/ProjectModal.tsx:83
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:98
 msgid "Project Name"
 msgstr "Project Name"
 
-#: src/features/timer/components/TimerPage/TimerPage.tsx:43
+#: src/features/timer/components/TimerPage/TimerPage.tsx:46
 msgid "Project Required"
 msgstr "Project Required"
 
@@ -315,11 +335,11 @@ msgstr "Projects"
 msgid "Reports"
 msgstr "Reports"
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:205
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:258
 msgid "Reset All Data"
 msgstr "Reset All Data"
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:92
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:97
 msgid "Reset All Data?"
 msgstr "Reset All Data?"
 
@@ -327,20 +347,20 @@ msgstr "Reset All Data?"
 msgid "Resume Timer"
 msgstr "Resume Timer"
 
-#: src/features/projects/components/ProjectModal/ProjectModal.tsx:131
-#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:161
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:146
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:167
 msgid "Save Changes"
 msgstr "Save Changes"
 
-#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:115
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:122
 msgid "Select project"
 msgstr "Select project"
 
-#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:130
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:137
 msgid "Select tags"
 msgstr "Select tags"
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:118
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:123
 msgid "Settings"
 msgstr "Settings"
 
@@ -348,11 +368,11 @@ msgstr "Settings"
 msgid "Start the timer to track your work."
 msgstr "Start the timer to track your work."
 
-#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:142
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:148
 msgid "Start Time"
 msgstr "Start Time"
 
-#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:70
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:77
 msgid "Start time is required"
 msgstr "Start time is required"
 
@@ -364,15 +384,23 @@ msgstr "Start Timer"
 msgid "Stop & Save"
 msgstr "Stop & Save"
 
-#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:129
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:147
+msgid "System"
+msgstr "System"
+
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:136
 msgid "Tags"
 msgstr "Tags"
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:78
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:83
 msgid "The selected file is not a valid Chronify backup."
 msgstr "The selected file is not a valid Chronify backup."
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:52
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:134
+msgid "Theme"
+msgstr "Theme"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:57
 msgid "This will overwrite all your current data with the backup file. This action cannot be undone."
 msgstr "This will overwrite all your current data with the backup file. This action cannot be undone."
 
@@ -396,8 +424,8 @@ msgstr "Total Time"
 msgid "Week"
 msgstr "Week"
 
-#: src/features/timer/components/TimerPage/TimerPage.tsx:122
-#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:124
+#: src/features/timer/components/TimerPage/TimerPage.tsx:110
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:131
 msgid "What are you working on?"
 msgstr "What are you working on?"
 
@@ -405,10 +433,10 @@ msgstr "What are you working on?"
 msgid "Year"
 msgstr "Year"
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:100
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:105
 msgid "Yes, Reset All"
 msgstr "Yes, Reset All"
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:70
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:75
 msgid "Your data has been successfully imported."
 msgstr "Your data has been successfully imported."

@@ -7,8 +7,13 @@ import {
   IconFolder,
   IconChartBar,
   IconSettings,
+  IconPlayerPlay,
+  IconPlayerPause,
 } from '@tabler/icons-react';
 import { useLocation, useNavigate, Outlet } from 'react-router-dom';
+import { useTimer } from '@providers/TimerProvider';
+import { TimerStatusEnum } from '@enums/timer-status.enum';
+import { useAppData } from '@providers/context';
 import classes from './AppLayout.module.scss';
 
 const NAV_ITEMS = [
@@ -18,10 +23,23 @@ const NAV_ITEMS = [
   { label: 'Reports', icon: IconChartBar, path: '/reports' },
 ];
 
+const formatTime = (seconds: number) => {
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = seconds % 60;
+  return [h, m, s].map((v) => v.toString().padStart(2, '0')).join(':');
+};
+
 export function AppLayout() {
+  const { data } = useAppData();
+  const { status, elapsed, activeEntry } = useTimer();
   const [opened] = useDisclosure();
   const location = useLocation();
   const navigate = useNavigate();
+
+  const activeProject = data.projects.find(
+    (p) => p.id === activeEntry.projectId,
+  );
 
   return (
     <AppShell
@@ -50,6 +68,29 @@ export function AppLayout() {
         </div>
 
         <div className={classes.navFooter}>
+          {status !== TimerStatusEnum.Idle && (
+            <div
+              className={classes.timerIndicator}
+              onClick={() => navigate('/')}
+              style={{ cursor: 'pointer' }}
+            >
+              <div className={classes.timerIndicatorHeader}>
+                {status === TimerStatusEnum.Running ? (
+                  <IconPlayerPlay size={12} fill="currentColor" />
+                ) : (
+                  <IconPlayerPause size={12} fill="currentColor" />
+                )}
+                <span className={classes.timerTime}>{formatTime(elapsed)}</span>
+              </div>
+              <div
+                className={classes.timerProject}
+                style={{ color: activeProject?.color }}
+              >
+                {activeProject?.name || 'No Project'}
+              </div>
+            </div>
+          )}
+
           <button
             className={`${classes.navLink} ${
               location.pathname === '/settings' ? classes.navLinkActive : ''

@@ -8,6 +8,7 @@ import {
   Textarea,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { useHotkeys } from '@mantine/hooks';
 import { useLingui } from '@lingui/react';
 import { msg } from '@lingui/core/macro';
 import { useEffect } from 'react';
@@ -34,6 +35,20 @@ export function ProjectModal({
   initialValues,
 }: ProjectModalProps) {
   const { _ } = useLingui();
+
+  useHotkeys([
+    [
+      'mod+S',
+      () => {
+        if (opened) {
+          form.onSubmit((values) => {
+            onSubmit(values);
+            onClose();
+          })();
+        }
+      },
+    ],
+  ]);
 
   const form = useForm<ProjectFormValues>({
     initialValues: {

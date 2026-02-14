@@ -428,7 +428,7 @@ export function buildTheme(primaryColor: string) {
 - [x] Edit / delete / archive project
 - [x] Per-project time statistics (total duration)
 
-### 🚀 Phase 4 — Reporting & Export
+### ✅ Phase 4 — Reporting & Export
 
 - [x] Daily / weekly / monthly summary view
 - [x] Per-project pie / bar charts
@@ -436,12 +436,12 @@ export function buildTheme(primaryColor: string) {
 - [x] PDF export
 - [x] Data backup (JSON export/import)
 
-### 🔲 Phase 5 — Polish & Extras
+### ✅ Phase 5 — Polish & Extras
 
-- [x] Tagging system
-- [ ] Dark / Light theme toggle
-- [ ] Keyboard shortcuts (⌘+S save, Space timer toggle)
-- [ ] Idle reminder (notification)
+- [x] Tagging system (MultiSelect)
+- [x] Dark / Light theme toggle (Settings)
+- [x] Keyboard shortcuts (⌘+S save, Space timer toggle)
+- [x] Idle reminder (notification)
 - [ ] App icon & splash screen
 - [ ] macOS + Windows build & distribution
 

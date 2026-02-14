@@ -3,6 +3,7 @@ import { useLingui } from '@lingui/react';
 import { Button, Group, Modal, Select, Stack, TextInput } from '@mantine/core';
 import { DateTimePicker } from '@mantine/dates';
 import { useForm } from '@mantine/form';
+import { useHotkeys } from '@mantine/hooks';
 import { IconTags } from '@tabler/icons-react';
 import dayjs from 'dayjs';
 import { useEffect } from 'react';
@@ -33,6 +34,20 @@ export function TimeEntryModal({
 }: TimeEntryModalProps) {
   const { _ } = useLingui();
   const { data, addTag } = useAppData();
+
+  useHotkeys([
+    [
+      'mod+S',
+      () => {
+        if (opened) {
+          form.onSubmit((values) => {
+            onSubmit(values);
+            onClose();
+          })();
+        }
+      },
+    ],
+  ]);
 
   const projectOptions = data.projects.map((p) => ({
     value: p.id,

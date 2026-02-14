@@ -99,7 +99,7 @@ export function useReportsData() {
       };
     });
 
-    return chartData.sort((a, b) => b.value - a.value);
+    return chartData.toSorted((a, b) => b.value - a.value);
   }, [filteredEntries, data.projects]);
 
   const dailyChartData = useMemo(() => {

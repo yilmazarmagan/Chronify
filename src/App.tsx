@@ -5,6 +5,8 @@ import { Notifications } from '@mantine/notifications';
 import { useEffect } from 'react';
 import { activateLocale, i18n, type Locale } from './lib/i18n';
 import { AppDataProvider } from './providers/AppDataProvider';
+import { TimerProvider } from './providers/TimerProvider';
+import { IdleReminder } from './components/IdleReminder/IdleReminder';
 import { useAppData } from './providers/context';
 import { AppRoutes } from './routes';
 import { buildTheme } from './styles/theme';
@@ -29,8 +31,14 @@ function ThemedApp() {
 
   return (
     <I18nProvider i18n={i18n}>
-      <MantineProvider theme={theme} defaultColorScheme="dark">
+      <MantineProvider
+        theme={theme}
+        forceColorScheme={
+          data.settings.theme === 'auto' ? undefined : data.settings.theme
+        }
+      >
         <Notifications position="top-right" />
+        <IdleReminder />
         <ModalsProvider>
           <AppRoutes />
         </ModalsProvider>
@@ -42,7 +50,9 @@ function ThemedApp() {
 export default function App() {
   return (
     <AppDataProvider>
-      <ThemedApp />
+      <TimerProvider>
+        <ThemedApp />
+      </TimerProvider>
     </AppDataProvider>
   );
 }

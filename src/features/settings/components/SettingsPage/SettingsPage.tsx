@@ -1,10 +1,13 @@
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import {
+  Box,
   Button,
+  Center,
   ColorSwatch,
   FileButton,
   Group,
+  NumberInput,
   Paper,
   SegmentedControl,
   SimpleGrid,
@@ -16,17 +19,20 @@ import { modals } from '@mantine/modals';
 import { notifications } from '@mantine/notifications';
 import {
   IconCheck,
+  IconDeviceDesktop,
   IconDownload,
   IconExclamationCircle,
+  IconMoon,
   IconSettings,
+  IconSun,
   IconTrash,
   IconUpload,
 } from '@tabler/icons-react';
 import { locales, type Locale } from '../../../../lib/i18n';
 import { useAppData } from '../../../../providers/context';
 import { COLOR_PRESETS } from '../../../../styles/theme';
-import { downloadFile } from '../../../../utils/export.utils';
 import { DEFAULT_APP_DATA } from '../../../../types/app-data.types';
+import { downloadFile } from '../../../../utils/export.utils';
 
 export function SettingsPage() {
   const { _ } = useLingui();
@@ -57,7 +63,7 @@ export function SettingsPage() {
       confirmProps: { color: 'red' },
       onConfirm: () => {
         const reader = new FileReader();
-        reader.onload = (e) => {
+        reader.addEventListener('load', (e) => {
           try {
             const importedData = JSON.parse(e.target?.result as string);
             // Basic validation
@@ -71,7 +77,7 @@ export function SettingsPage() {
               color: 'green',
               icon: <IconCheck size={16} />,
             });
-          } catch (error) {
+          } catch {
             notifications.show({
               title: _(msg`Import Failed`),
               message: _(
@@ -81,7 +87,7 @@ export function SettingsPage() {
               icon: <IconExclamationCircle size={16} />,
             });
           }
-        };
+        });
         reader.readAsText(file);
       },
     });
@@ -118,32 +124,80 @@ export function SettingsPage() {
         <Title order={2}>{_(msg`Settings`)}</Title>
       </Group>
 
-      {/* Accent Color */}
+      {/* Appearance */}
       <Paper p="lg" radius="md" withBorder>
         <Title order={4} mb="md">
-          {_(msg`Accent Color`)}
+          {_(msg`Appearance`)}
         </Title>
-        <Text c="dimmed" size="sm" mb="md">
-          {_(msg`Choose the primary color for the app`)}
-        </Text>
-        <SimpleGrid cols={8} spacing="sm">
-          {COLOR_PRESETS.map((preset) => (
-            <ColorSwatch
-              key={preset.hex}
-              color={preset.hex}
-              size={40}
-              onClick={() => updateSettings({ primaryColor: preset.hex })}
-              style={{
-                cursor: 'pointer',
-                outline:
-                  data.settings.primaryColor === preset.hex
-                    ? '3px solid var(--mantine-color-white)'
-                    : 'none',
-                outlineOffset: 2,
-              }}
+        <Stack gap="md">
+          <Box>
+            <Text size="sm" fw={500} mb="xs">
+              {_(msg`Theme`)}
+            </Text>
+            <SegmentedControl
+              value={data.settings.theme}
+              onChange={(val) =>
+                updateSettings({ theme: val as 'dark' | 'light' | 'auto' })
+              }
+              data={[
+                {
+                  value: 'auto',
+                  label: (
+                    <Center style={{ gap: 10 }}>
+                      <IconDeviceDesktop size={16} />
+                      <span>{_(msg`System`)}</span>
+                    </Center>
+                  ),
+                },
+                {
+                  value: 'light',
+                  label: (
+                    <Center style={{ gap: 10 }}>
+                      <IconSun size={16} />
+                      <span>{_(msg`Light`)}</span>
+                    </Center>
+                  ),
+                },
+                {
+                  value: 'dark',
+                  label: (
+                    <Center style={{ gap: 10 }}>
+                      <IconMoon size={16} />
+                      <span>{_(msg`Dark`)}</span>
+                    </Center>
+                  ),
+                },
+              ]}
             />
-          ))}
-        </SimpleGrid>
+          </Box>
+
+          <Box>
+            <Text size="sm" fw={500} mb="xs">
+              {_(msg`Accent Color`)}
+            </Text>
+            <Text c="dimmed" size="xs" mb="md">
+              {_(msg`Choose the primary color for the app`)}
+            </Text>
+            <SimpleGrid cols={8} spacing="sm">
+              {COLOR_PRESETS.map((preset) => (
+                <ColorSwatch
+                  key={preset.hex}
+                  color={preset.hex}
+                  size={40}
+                  onClick={() => updateSettings({ primaryColor: preset.hex })}
+                  style={{
+                    cursor: 'pointer',
+                    outline:
+                      data.settings.primaryColor === preset.hex
+                        ? '3px solid var(--mantine-color-primary-6)'
+                        : 'none',
+                    outlineOffset: 2,
+                  }}
+                />
+              ))}
+            </SimpleGrid>
+          </Box>
+        </Stack>
       </Paper>
 
       {/* Language */}
@@ -161,6 +215,41 @@ export function SettingsPage() {
             }),
           )}
         />
+      </Paper>
+
+      {/* Notifications */}
+      <Paper p="lg" radius="md" withBorder>
+        <Title order={4} mb="md">
+          {_(msg`Notifications & Reminders`)}
+        </Title>
+        <Stack gap="md">
+          <Box>
+            <Text size="sm" fw={500} mb="xs">
+              {_(msg`Idle Reminder`)}
+            </Text>
+            <Text c="dimmed" size="xs" mb="md">
+              {_(
+                msg`Show a notification if you are active but haven't started your timer for a while.`,
+              )}
+            </Text>
+            <Group align="center">
+              <NumberInput
+                value={data.settings.idleReminderMinutes}
+                onChange={(val) =>
+                  updateSettings({ idleReminderMinutes: Number(val) || 0 })
+                }
+                min={0}
+                max={60}
+                step={1}
+                w={100}
+                suffix={_(msg` min`)}
+              />
+              <Text size="sm" c="dimmed">
+                {_(msg`Set to 0 to disable.`)}
+              </Text>
+            </Group>
+          </Box>
+        </Stack>
       </Paper>
 
       {/* Data Management */}
