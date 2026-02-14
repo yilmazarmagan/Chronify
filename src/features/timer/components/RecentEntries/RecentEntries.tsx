@@ -10,7 +10,7 @@ import {
 import { IconPlayerPlay } from '@tabler/icons-react';
 import { useLingui } from '@lingui/react';
 import { msg } from '@lingui/core/macro';
-import { useAppData } from '../../../../providers/AppDataProvider';
+import { useAppData } from '../../../../providers/context';
 import { formatDurationString } from '../../../../utils/date.utils';
 import { DATE_FORMAT, TIME_FORMAT } from '../../../../constants';
 import dayjs from 'dayjs';

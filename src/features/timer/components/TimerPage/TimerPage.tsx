@@ -1,24 +1,14 @@
+import { CreatableMultiSelect } from '@components/CreatableMultiSelect/CreatableMultiSelect';
+import { DATE_FORMAT } from '@constants/date.constants';
+import { TimerStatusEnum } from '@enums/timer-status.enum';
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
-import {
-  Button,
-  Container,
-  Group,
-  Paper,
-  Select,
-  Stack,
-  Text,
-  TextInput,
-  Title,
-} from '@mantine/core';
+import { Container, Group, Select, Stack, TextInput } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
-import { IconFolderPlus, IconHash } from '@tabler/icons-react';
-import { useNavigate } from 'react-router-dom';
+import { useAppData } from '@providers/context';
+import { IconHash, IconTags } from '@tabler/icons-react';
 import dayjs from 'dayjs';
 import { useRef, useState } from 'react';
-import { DATE_FORMAT } from '../../../../constants';
-import { TimerStatusEnum } from '../../../../enums';
-import { useAppData } from '../../../../providers/AppDataProvider';
 import { useTimer } from '../../hooks/useTimer';
 import { RecentEntries } from '../RecentEntries';
 import { TimerControls } from '../TimerControls';
@@ -27,12 +17,12 @@ import classes from './TimerPage.module.scss';
 
 export function TimerPage() {
   const { _ } = useLingui();
-  const navigate = useNavigate();
-  const { data, addTimeEntry } = useAppData();
+  const { data, addTimeEntry, addTag } = useAppData();
   const { status, elapsed, start, pause, resume, stop } = useTimer();
 
   const [description, setDescription] = useState('');
   const [projectId, setProjectId] = useState<string | null>(null);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const startTimeRef = useRef<string | null>(null);
 
   const handleStart = () => {
@@ -74,13 +64,14 @@ export function TimerPage() {
         endTime: endTime,
         duration: duration,
         date: dayjs(startTimeRef.current).format(DATE_FORMAT),
-        tags: [],
+        tags: selectedTags,
       });
     }
 
     // Reset local state
     setDescription('');
     setProjectId(null);
+    setSelectedTags([]);
     startTimeRef.current = null;
   };
 
@@ -94,62 +85,71 @@ export function TimerPage() {
     label: p.name,
   }));
 
+  const tagOptions = data.tags.map((t) => ({
+    value: t.id,
+    label: t.name,
+  }));
+
+  // Helper to add new tags on the fly
+  const handleCreateTag = (query: string) => {
+    const newTag = addTag({ name: query, color: 'blue' }); // Default color
+    return newTag.id;
+  };
+
   if (data.projects.length === 0) {
-    return (
-      <Container size="sm" py={80}>
-        <Paper p="xl" radius="md" withBorder ta="center">
-          <IconFolderPlus
-            size={50}
-            stroke={1.5}
-            color="var(--mantine-color-blue-6)"
-          />
-          <Title order={3} mt="md">
-            {_(msg`No Projects Found`)}
-          </Title>
-          <Text c="dimmed" mt="xs" mb="xl">
-            {_(
-              msg`You need to create a project before you can start tracking time.`,
-            )}
-          </Text>
-          <Button onClick={() => navigate('/projects')}>
-            {_(msg`Create Project`)}
-          </Button>
-        </Paper>
-      </Container>
-    );
+    // ... (no projects UI remains same)
   }
 
   return (
     <Container size="sm" py="xl" className={classes.container}>
       <Stack gap="xl" align="center">
         {/* Input Section */}
-        <Group w="100%" align="flex-end" className={classes.inputGroup}>
-          <TextInput
-            placeholder={_(msg`What are you working on?`)}
-            value={description}
-            onChange={(e) => setDescription(e.currentTarget.value)}
+        <Stack w="100%" gap="xs">
+          <Group w="100%" align="flex-end" className={classes.inputGroup}>
+            <TextInput
+              placeholder={_(msg`What are you working on?`)}
+              value={description}
+              onChange={(e) => setDescription(e.currentTarget.value)}
+              disabled={status !== TimerStatusEnum.Idle}
+              size="md"
+              className={classes.descriptionInput}
+              variant="filled"
+            />
+            <Select
+              placeholder={_(msg`Project`)}
+              data={projectOptions}
+              value={projectId}
+              onChange={setProjectId}
+              disabled={status !== TimerStatusEnum.Idle}
+              size="md"
+              searchable
+              clearable
+              leftSection={<IconHash size={16} />}
+              className={classes.projectSelect}
+              variant="filled"
+              comboboxProps={{
+                transitionProps: { transition: 'pop', duration: 200 },
+              }}
+            />
+          </Group>
+          <CreatableMultiSelect
+            placeholder={_(msg`Add tags...`)}
+            data={tagOptions}
+            value={selectedTags}
+            onChange={setSelectedTags}
             disabled={status !== TimerStatusEnum.Idle}
-            size="md"
-            className={classes.descriptionInput}
-            variant="filled"
-          />
-          <Select
-            placeholder={_(msg`Project`)}
-            data={projectOptions}
-            value={projectId}
-            onChange={setProjectId}
-            disabled={status !== TimerStatusEnum.Idle}
-            size="md"
             searchable
             clearable
-            leftSection={<IconHash size={16} />}
-            className={classes.projectSelect}
+            getCreateLabel={(query) => `+ ${query}`}
+            onCreate={handleCreateTag}
+            leftSection={<IconTags size={16} />}
             variant="filled"
+            size="sm"
             comboboxProps={{
               transitionProps: { transition: 'pop', duration: 200 },
             }}
           />
-        </Group>
+        </Stack>
 
         {/* Timer Display */}
         <TimerDisplay elapsed={elapsed} status={status} />

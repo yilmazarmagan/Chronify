@@ -5,7 +5,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { modals } from '@mantine/modals';
 import { IconFolderOff, IconPlus } from '@tabler/icons-react';
 import { useState } from 'react';
-import { useAppData } from '../../../../providers/AppDataProvider';
+import { useAppData } from '../../../../providers/context';
 import type { Project } from '../../../../types/project.types';
 import {
   calculateTotalDuration,
@@ -27,7 +27,6 @@ export function ProjectsPage() {
   };
 
   const handleAddNew = () => {
-    setEditingProject(editingProject ? null : null); // Ensure clean state
     setEditingProject(null);
     open();
   };
@@ -114,6 +113,7 @@ export function ProjectsPage() {
       )}
 
       <ProjectModal
+        key={editingProject ? `edit-${editingProject.id}` : 'new'}
         opened={opened}
         onClose={() => {
           close();

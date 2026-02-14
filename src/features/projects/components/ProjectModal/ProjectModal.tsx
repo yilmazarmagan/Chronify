@@ -63,7 +63,8 @@ export function ProjectModal({
         form.reset();
       }
     }
-  }, [opened, initialValues, form]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [opened, initialValues]);
 
   return (
     <Modal

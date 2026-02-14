@@ -1,0 +1,17 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.statValue {
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.icon {
+  color: var(--mantine-color-dimmed);
+}

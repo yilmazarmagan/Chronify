@@ -13,92 +13,348 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:32
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:124
 msgid "Accent Color"
 msgstr "Accent Color"
 
-#: src/features/projects/components/ProjectCard/ProjectCard.tsx:77
+#: src/features/projects/components/ProjectCard/ProjectCard.tsx:84
 msgid "Active"
 msgstr "Active"
 
-#: src/features/projects/components/ProjectCard/ProjectCard.tsx:81
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:118
+msgid "Active Project"
+msgstr "Active Project"
+
+#: src/features/timer/components/TimerPage/TimerPage.tsx:148
+msgid "Add tags..."
+msgstr "Add tags..."
+
+#: src/features/reports/components/ReportsHeader/ReportsHeader.tsx:66
+msgid "All"
+msgstr "All"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:106
+msgid "All data has been cleared."
+msgstr "All data has been cleared."
+
+#: src/features/reports/components/ReportsHeader/ReportsHeader.tsx:50
+#: src/features/reports/components/ReportsHeader/ReportsHeader.tsx:71
+msgid "All Projects"
+msgstr "All Projects"
+
+#: src/features/projects/components/ProjectCard/ProjectCard.tsx:88
 msgid "Archived"
 msgstr "Archived"
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:35
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:96
+msgid "Are you sure you want to delete all entries, projects, and settings? This action is permanent."
+msgstr "Are you sure you want to delete all entries, projects, and settings? This action is permanent."
+
+#. placeholder {0}: project.name
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:40
+msgid "Are you sure you want to delete project \"{0}\"? This action cannot be undone."
+msgstr "Are you sure you want to delete project \"{0}\"? This action cannot be undone."
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:69
+msgid "Backup Restored"
+msgstr "Backup Restored"
+
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:128
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:44
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:56
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:100
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:158
+msgid "Cancel"
+msgstr "Cancel"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:127
 msgid "Choose the primary color for the app"
 msgstr "Choose the primary color for the app"
 
-#: src/features/timer/components/RecentEntries/RecentEntries.tsx:83
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:101
+msgid "Color"
+msgstr "Color"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:48
+msgid "Confirm Backup Restoration"
+msgstr "Confirm Backup Restoration"
+
+#: src/features/timer/components/RecentEntries/RecentEntries.tsx:79
 msgid "Continue this task"
 msgstr "Continue this task"
 
-#: src/features/projects/components/ProjectCard/ProjectCard.tsx:57
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:161
+msgid "Create Entry"
+msgstr "Create Entry"
+
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:131
+msgid "Create Project"
+msgstr "Create Project"
+
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:82
+msgid "Create your first project to get started."
+msgstr "Create your first project to get started."
+
+#: src/features/reports/components/DailyActivityChart/DailyActivityChart.tsx:22
+msgid "Daily Activity"
+msgstr "Daily Activity"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:169
+msgid "Data Management"
+msgstr "Data Management"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:105
+msgid "Data Reset"
+msgstr "Data Reset"
+
+#: src/features/projects/components/ProjectCard/ProjectCard.tsx:63
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:44
 msgid "Delete"
 msgstr "Delete"
 
-#: src/features/timesheet/components/TimeEntryCard/TimeEntryCard.tsx:55
+#: src/features/timesheet/components/TimeEntryCard/TimeEntryCard.tsx:93
 msgid "Delete entry"
 msgstr "Delete entry"
 
-#: src/features/projects/components/ProjectCard/ProjectCard.tsx:50
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:36
+msgid "Delete Project"
+msgstr "Delete Project"
+
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:92
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:123
+msgid "Description"
+msgstr "Description"
+
+#: src/features/timer/components/TimerPage/TimerPage.tsx:52
+msgid "Description Required"
+msgstr "Description Required"
+
+#: src/features/reports/components/ReportsHeader/ReportsHeader.tsx:100
+msgid "Download Report"
+msgstr "Download Report"
+
+#: src/features/projects/components/ProjectCard/ProjectCard.tsx:56
 msgid "Edit"
 msgstr "Edit"
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:60
+#: src/features/timesheet/components/TimeEntryCard/TimeEntryCard.tsx:82
+msgid "Edit entry"
+msgstr "Edit entry"
+
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:73
+msgid "Edit Project"
+msgstr "Edit Project"
+
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:103
+msgid "Edit Time Entry"
+msgstr "Edit Time Entry"
+
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:150
+msgid "End Time"
+msgstr "End Time"
+
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:73
+msgid "End time must be after start time"
+msgstr "End time must be after start time"
+
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:84
+msgid "Enter project name"
+msgstr "Enter project name"
+
+#: src/features/reports/components/StatsCards/StatsCards.tsx:45
+msgid "entries found"
+msgstr "entries found"
+
+#: src/features/reports/components/ReportsHeader/ReportsHeader.tsx:95
+msgid "Export"
+msgstr "Export"
+
+#: src/features/reports/components/ReportsHeader/ReportsHeader.tsx:105
+msgid "Export as CSV"
+msgstr "Export as CSV"
+
+#: src/features/reports/components/ReportsHeader/ReportsHeader.tsx:111
+msgid "Export as PDF"
+msgstr "Export as PDF"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:183
+msgid "Export Backup (JSON)"
+msgstr "Export Backup (JSON)"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:173
+msgid "Export your data for backup or import an existing backup file."
+msgstr "Export your data for backup or import an existing backup file."
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:194
+msgid "Import Backup"
+msgstr "Import Backup"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:76
+msgid "Import Failed"
+msgstr "Import Failed"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:56
+msgid "Import Now"
+msgstr "Import Now"
+
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:120
+msgid "Inactive projects won't appear in the timer selection"
+msgstr "Inactive projects won't appear in the timer selection"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:152
 msgid "Language"
 msgstr "Language"
 
-#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:13
-msgid "Manage your projects"
-msgstr "Manage your projects"
+#: src/features/reports/components/ReportsHeader/ReportsHeader.tsx:64
+msgid "Month"
+msgstr "Month"
 
-#: src/features/projects/components/ProjectCard/ProjectCard.tsx:71
-#: src/features/timer/components/RecentEntries/RecentEntries.tsx:69
-#: src/features/timesheet/components/TimeEntryCard/TimeEntryCard.tsx:43
+#: src/features/reports/components/StatsCards/StatsCards.tsx:54
+msgid "Most Active Project"
+msgstr "Most Active Project"
+
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:48
+msgid "Name must be at least 2 characters"
+msgstr "Name must be at least 2 characters"
+
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:73
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:66
+msgid "New Project"
+msgstr "New Project"
+
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:103
+msgid "New Time Entry"
+msgstr "New Time Entry"
+
+#: src/features/reports/components/StatsCards/StatsCards.tsx:68
+msgid "No data"
+msgstr "No data"
+
+#: src/features/reports/components/DailyActivityChart/DailyActivityChart.tsx:40
+#: src/features/reports/components/ProjectDistributionChart/ProjectDistributionChart.tsx:40
+msgid "No data available"
+msgstr "No data available"
+
+#: src/features/projects/components/ProjectCard/ProjectCard.tsx:77
+#: src/features/timer/components/RecentEntries/RecentEntries.tsx:65
+#: src/features/timesheet/components/TimeEntryCard/TimeEntryCard.tsx:48
 msgid "No description"
 msgstr "No description"
 
-#: src/features/timer/components/RecentEntries/RecentEntries.tsx:40
+#: src/features/timer/components/RecentEntries/RecentEntries.tsx:36
 msgid "No entries yet for today."
 msgstr "No entries yet for today."
 
-#: src/features/timer/components/RecentEntries/RecentEntries.tsx:72
-#: src/features/timesheet/components/TimeEntryCard/TimeEntryCard.tsx:46
+#: src/features/timer/components/RecentEntries/RecentEntries.tsx:68
+#: src/features/timesheet/components/TimeEntryCard/TimeEntryCard.tsx:52
 msgid "No Project"
 msgstr "No Project"
 
-#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:31
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:79
+msgid "No projects found"
+msgstr "No projects found"
+
+#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:64
 msgid "No time entries found"
 msgstr "No time entries found"
+
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:93
+msgid "Optional description"
+msgstr "Optional description"
 
 #: src/features/timer/components/TimerControls/TimerControls.tsx:67
 msgid "Pause Timer"
 msgstr "Pause Timer"
 
-#: src/features/timer/components/TimerPage/TimerPage.tsx:79
+#: src/features/reports/components/ReportsHeader/ReportsHeader.tsx:81
+msgid "Pick dates range"
+msgstr "Pick dates range"
+
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:151
+msgid "Pick end date and time"
+msgstr "Pick end date and time"
+
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:143
+msgid "Pick start date and time"
+msgstr "Pick start date and time"
+
+#: src/features/timer/components/TimerPage/TimerPage.tsx:54
+msgid "Please enter a description for what you are working on."
+msgstr "Please enter a description for what you are working on."
+
+#: src/features/timer/components/TimerPage/TimerPage.tsx:44
+msgid "Please select a project to start the timer."
+msgstr "Please select a project to start the timer."
+
+#: src/features/timer/components/TimerPage/TimerPage.tsx:131
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:114
 msgid "Project"
 msgstr "Project"
 
-#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:12
+#: src/features/reports/components/ProjectDistributionChart/ProjectDistributionChart.tsx:25
+msgid "Project Distribution"
+msgstr "Project Distribution"
+
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:69
+msgid "Project is required"
+msgstr "Project is required"
+
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:83
+msgid "Project Name"
+msgstr "Project Name"
+
+#: src/features/timer/components/TimerPage/TimerPage.tsx:43
+msgid "Project Required"
+msgstr "Project Required"
+
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:64
 msgid "Projects"
 msgstr "Projects"
 
-#: src/features/reports/components/ReportsPage/ReportsPage.tsx:12
+#: src/features/reports/components/ReportsHeader/ReportsHeader.tsx:56
 msgid "Reports"
 msgstr "Reports"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:205
+msgid "Reset All Data"
+msgstr "Reset All Data"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:92
+msgid "Reset All Data?"
+msgstr "Reset All Data?"
 
 #: src/features/timer/components/TimerControls/TimerControls.tsx:80
 msgid "Resume Timer"
 msgstr "Resume Timer"
 
-#: src/features/settings/components/SettingsPage/SettingsPage.tsx:26
+#: src/features/projects/components/ProjectModal/ProjectModal.tsx:131
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:161
+msgid "Save Changes"
+msgstr "Save Changes"
+
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:115
+msgid "Select project"
+msgstr "Select project"
+
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:130
+msgid "Select tags"
+msgstr "Select tags"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:118
 msgid "Settings"
 msgstr "Settings"
 
-#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:33
+#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:66
 msgid "Start the timer to track your work."
 msgstr "Start the timer to track your work."
+
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:142
+msgid "Start Time"
+msgstr "Start Time"
+
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:70
+msgid "Start time is required"
+msgstr "Start time is required"
 
 #: src/features/timer/components/TimerControls/TimerControls.tsx:38
 msgid "Start Timer"
@@ -108,18 +364,51 @@ msgstr "Start Timer"
 msgid "Stop & Save"
 msgstr "Stop & Save"
 
-#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:42
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:129
+msgid "Tags"
+msgstr "Tags"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:78
+msgid "The selected file is not a valid Chronify backup."
+msgstr "The selected file is not a valid Chronify backup."
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:52
+msgid "This will overwrite all your current data with the backup file. This action cannot be undone."
+msgstr "This will overwrite all your current data with the backup file. This action cannot be undone."
+
+#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:75
 msgid "Timesheet"
 msgstr "Timesheet"
 
-#: src/features/timer/components/RecentEntries/RecentEntries.tsx:48
+#: src/features/reports/components/ReportsHeader/ReportsHeader.tsx:62
+msgid "Today"
+msgstr "Today"
+
+#: src/features/timer/components/RecentEntries/RecentEntries.tsx:44
 msgid "Today's Activity"
 msgstr "Today's Activity"
 
-#: src/features/reports/components/ReportsPage/ReportsPage.tsx:13
-msgid "View your reports and statistics"
-msgstr "View your reports and statistics"
+#: src/features/reports/components/StatsCards/StatsCards.tsx:33
+msgid "Total Time"
+msgstr "Total Time"
 
-#: src/features/timer/components/TimerPage/TimerPage.tsx:70
+#: src/features/reports/components/ReportsHeader/ReportsHeader.tsx:63
+msgid "Week"
+msgstr "Week"
+
+#: src/features/timer/components/TimerPage/TimerPage.tsx:122
+#: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:124
 msgid "What are you working on?"
 msgstr "What are you working on?"
+
+#: src/features/reports/components/ReportsHeader/ReportsHeader.tsx:65
+msgid "Year"
+msgstr "Year"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:100
+msgid "Yes, Reset All"
+msgstr "Yes, Reset All"
+
+#: src/features/settings/components/SettingsPage/SettingsPage.tsx:70
+msgid "Your data has been successfully imported."
+msgstr "Your data has been successfully imported."

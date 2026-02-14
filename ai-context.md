@@ -420,7 +420,7 @@ export function buildTheme(primaryColor: string) {
 - [x] Manual time entry creation
 - [x] Time entries list (daily view)
 - [x] Time entry delete
-- [ ] Time entry edit (In Progress)
+- [x] Time entry edit
 
 ### ✅ Phase 3 — Project Management
 
@@ -430,15 +430,15 @@ export function buildTheme(primaryColor: string) {
 
 ### 🚀 Phase 4 — Reporting & Export
 
-- [ ] Daily / weekly / monthly summary view
-- [ ] Per-project pie / bar charts
-- [ ] CSV export
-- [ ] PDF export (optional)
-- [ ] Data backup (JSON export/import)
+- [x] Daily / weekly / monthly summary view
+- [x] Per-project pie / bar charts
+- [x] CSV export
+- [x] PDF export
+- [x] Data backup (JSON export/import)
 
 ### 🔲 Phase 5 — Polish & Extras
 
-- [ ] Tagging system
+- [x] Tagging system
 - [ ] Dark / Light theme toggle
 - [ ] Keyboard shortcuts (⌘+S save, Space timer toggle)
 - [ ] Idle reminder (notification)
@@ -527,7 +527,7 @@ npx lingui compile        # Compile translation catalogs
 - [x] AppDataProvider (Context + JSON storage)
 - [x] AppShell layout (sidebar + routing)
 - [x] TypeScript compiles without errors
-- [ ] Timer widget development (Phase 2)
+- [x] Timer widget development (Phase 2)
 
 ### Prerequisites (Dev Environment)
 

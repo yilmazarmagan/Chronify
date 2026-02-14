@@ -1,21 +1,13 @@
-// App data context — all CRUD operations
-
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useCallback,
-  type ReactNode,
-} from 'react';
+import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { loadAppData, saveAppData } from '../lib/storage';
 import type { AppData } from '../types/app-data.types';
+import { DEFAULT_APP_DATA } from '../types/app-data.types';
 import type { AppSettings } from '../types/app-settings.types';
 import type { Project } from '../types/project.types';
-import type { TimeEntry } from '../types/time-entry.types';
 import type { Tag } from '../types/tag.types';
-import { DEFAULT_APP_DATA } from '../types/app-data.types';
-import { loadAppData, saveAppData } from '../lib/storage';
+import type { TimeEntry } from '../types/time-entry.types';
+import { AppDataContext } from './context';
 
 // Helper: Sort Projects (Active first, then updatedAt desc)
 const sortProjects = (projects: Project[]) => {
@@ -33,34 +25,6 @@ const sortTimeEntries = (entries: TimeEntry[]) => {
     (a, b) => new Date(b.startTime).getTime() - new Date(a.startTime).getTime(),
   );
 };
-
-interface AppDataContextType {
-  data: AppData;
-  isLoading: boolean;
-
-  // Settings
-  updateSettings: (settings: Partial<AppSettings>) => void;
-
-  // Projects
-  addProject: (
-    project: Omit<Project, 'id' | 'createdAt' | 'updatedAt'>,
-  ) => Project;
-  updateProject: (id: string, updates: Partial<Project>) => void;
-  deleteProject: (id: string) => void;
-
-  // Time Entries
-  addTimeEntry: (
-    entry: Omit<TimeEntry, 'id' | 'createdAt' | 'updatedAt'>,
-  ) => TimeEntry;
-  updateTimeEntry: (id: string, updates: Partial<TimeEntry>) => void;
-  deleteTimeEntry: (id: string) => void;
-
-  // Tags
-  addTag: (tag: Omit<Tag, 'id'>) => Tag;
-  deleteTag: (id: string) => void;
-}
-
-const AppDataContext = createContext<AppDataContextType | null>(null);
 
 export function AppDataProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState<AppData>(DEFAULT_APP_DATA);
@@ -229,31 +193,38 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
     [data, persistData],
   );
 
-  return (
-    <AppDataContext.Provider
-      value={{
-        data,
-        isLoading,
-        updateSettings,
-        addProject,
-        updateProject,
-        deleteProject,
-        addTimeEntry,
-        updateTimeEntry,
-        deleteTimeEntry,
-        addTag,
-        deleteTag,
-      }}
-    >
-      {children}
-    </AppDataContext.Provider>
+  const value = useMemo(
+    () => ({
+      data,
+      isLoading,
+      updateSettings,
+      addProject,
+      updateProject,
+      deleteProject,
+      addTimeEntry,
+      updateTimeEntry,
+      deleteTimeEntry,
+      addTag,
+      deleteTag,
+      setAllData: persistData,
+    }),
+    [
+      data,
+      isLoading,
+      updateSettings,
+      addProject,
+      updateProject,
+      deleteProject,
+      addTimeEntry,
+      updateTimeEntry,
+      deleteTimeEntry,
+      addTag,
+      deleteTag,
+      persistData,
+    ],
   );
-}
 
-export function useAppData() {
-  const context = useContext(AppDataContext);
-  if (!context) {
-    throw new Error('useAppData must be used within AppDataProvider');
-  }
-  return context;
+  return (
+    <AppDataContext.Provider value={value}>{children}</AppDataContext.Provider>
+  );
 }

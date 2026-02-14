@@ -1,20 +1,21 @@
-import { AppShell } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
+import { AppShell, Loader } from '@mantine/core';
+import { Suspense } from 'react';
+import { useDisclosure } from '@mantine/hooks';
 import {
   IconClock,
   IconCalendar,
   IconFolder,
   IconChartBar,
   IconSettings,
-} from "@tabler/icons-react";
-import { useLocation, useNavigate, Outlet } from "react-router-dom";
-import classes from "./AppLayout.module.scss";
+} from '@tabler/icons-react';
+import { useLocation, useNavigate, Outlet } from 'react-router-dom';
+import classes from './AppLayout.module.scss';
 
 const NAV_ITEMS = [
-  { label: "Timer", icon: IconClock, path: "/" },
-  { label: "Timesheet", icon: IconCalendar, path: "/timesheet" },
-  { label: "Projects", icon: IconFolder, path: "/projects" },
-  { label: "Reports", icon: IconChartBar, path: "/reports" },
+  { label: 'Timer', icon: IconClock, path: '/' },
+  { label: 'Timesheet', icon: IconCalendar, path: '/timesheet' },
+  { label: 'Projects', icon: IconFolder, path: '/projects' },
+  { label: 'Reports', icon: IconChartBar, path: '/reports' },
 ];
 
 export function AppLayout() {
@@ -24,7 +25,7 @@ export function AppLayout() {
 
   return (
     <AppShell
-      navbar={{ width: 220, breakpoint: "sm", collapsed: { mobile: !opened } }}
+      navbar={{ width: 220, breakpoint: 'sm', collapsed: { mobile: !opened } }}
       padding="lg"
     >
       <AppShell.Navbar className={classes.navbar}>
@@ -38,7 +39,7 @@ export function AppLayout() {
             return (
               <button
                 key={item.path}
-                className={`${classes.navLink} ${isActive ? classes.navLinkActive : ""}`}
+                className={`${classes.navLink} ${isActive ? classes.navLinkActive : ''}`}
                 onClick={() => navigate(item.path)}
               >
                 <item.icon size={20} stroke={1.5} />
@@ -51,9 +52,9 @@ export function AppLayout() {
         <div className={classes.navFooter}>
           <button
             className={`${classes.navLink} ${
-              location.pathname === "/settings" ? classes.navLinkActive : ""
+              location.pathname === '/settings' ? classes.navLinkActive : ''
             }`}
-            onClick={() => navigate("/settings")}
+            onClick={() => navigate('/settings')}
           >
             <IconSettings size={20} stroke={1.5} />
             <span>Settings</span>
@@ -62,7 +63,22 @@ export function AppLayout() {
       </AppShell.Navbar>
 
       <AppShell.Main>
-        <Outlet />
+        <Suspense
+          fallback={
+            <div
+              style={{
+                height: 'calc(100vh - 40px)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Loader size="xl" variant="bars" />
+            </div>
+          }
+        >
+          <Outlet />
+        </Suspense>
       </AppShell.Main>
     </AppShell>
   );

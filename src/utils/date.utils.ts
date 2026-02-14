@@ -68,3 +68,18 @@ export function groupTimeEntriesByDate(
 export function calculateTotalDuration(entries: TimeEntry[]): number {
   return entries.reduce((acc, curr) => acc + (curr.duration || 0), 0);
 }
+
+/**
+ * Finds the earliest start time among entries.
+ * Returns dayjs object. Fallback to 1 year ago if empty.
+ */
+export function getEarliestTimeEntryDate(entries: TimeEntry[]) {
+  if (entries.length === 0) {
+    return dayjs().subtract(1, 'year');
+  }
+
+  return entries.reduce((min, e) => {
+    const entryDate = dayjs(e.startTime);
+    return entryDate.isBefore(min) ? entryDate : min;
+  }, dayjs(entries[0].startTime));
+}

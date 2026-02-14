@@ -4,7 +4,8 @@ import { ModalsProvider } from '@mantine/modals';
 import { Notifications } from '@mantine/notifications';
 import { useEffect } from 'react';
 import { activateLocale, i18n, type Locale } from './lib/i18n';
-import { AppDataProvider, useAppData } from './providers/AppDataProvider';
+import { AppDataProvider } from './providers/AppDataProvider';
+import { useAppData } from './providers/context';
 import { AppRoutes } from './routes';
 import { buildTheme } from './styles/theme';
 
