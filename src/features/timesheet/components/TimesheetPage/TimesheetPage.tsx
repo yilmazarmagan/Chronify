@@ -1,32 +1,76 @@
-import { Badge, Container, Group, Stack, Text, Title } from '@mantine/core';
-import { IconCalendarOff } from '@tabler/icons-react';
-import { useLingui } from '@lingui/react';
 import { msg } from '@lingui/core/macro';
-import { useState } from 'react';
-import { useDisclosure } from '@mantine/hooks';
-import { useAppData } from '../../../../providers/context';
+import { useLingui } from '@lingui/react';
 import {
+  Badge,
+  Container,
+  Group,
+  MultiSelect,
+  Select,
+  Stack,
+  Text,
+  TextInput,
+  Title,
+} from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import {
+  IconCalendarOff,
+  IconFilter,
+  IconHash,
+  IconSearch,
+  IconTags,
+  IconX,
+} from '@tabler/icons-react';
+import dayjs from 'dayjs';
+import { useMemo, useState } from 'react';
+import { DATE_FORMAT, DISPLAY_DATE_FORMAT } from '../../../../constants';
+import { useAppData } from '../../../../providers/context';
+import type { TimeEntry } from '../../../../types/time-entry.types';
+import {
+  calculateTotalDuration,
   formatDurationString,
   groupTimeEntriesByDate,
-  calculateTotalDuration,
 } from '../../../../utils/date.utils';
-import { DATE_FORMAT, DISPLAY_DATE_FORMAT } from '../../../../constants';
-import dayjs from 'dayjs';
-import classes from './TimesheetPage.module.scss';
 import { TimeEntryCard } from '../TimeEntryCard';
-import { TimeEntryModal, TimeEntryFormValues } from '../TimeEntryModal';
-import type { TimeEntry } from '../../../../types/time-entry.types';
+import { TimeEntryFormValues, TimeEntryModal } from '../TimeEntryModal';
+import classes from './TimesheetPage.module.scss';
 
 export function TimesheetPage() {
   const { _ } = useLingui();
   const { data, deleteTimeEntry, updateTimeEntry } = useAppData();
   const [editingEntry, setEditingEntry] = useState<TimeEntry | null>(null);
   const [opened, { open, close }] = useDisclosure(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [projectId, setProjectId] = useState<string | null>(null);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-  const groupedEntries = groupTimeEntriesByDate(data.timeEntries);
+  const filteredEntries = useMemo(() => {
+    return data.timeEntries.filter((entry) => {
+      const matchesSearch =
+        !searchQuery ||
+        entry.description?.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesProject = !projectId || entry.projectId === projectId;
+      const matchesTags =
+        selectedTags.length === 0 ||
+        selectedTags.every((tagId) => entry.tags?.includes(tagId));
+
+      return matchesSearch && matchesProject && matchesTags;
+    });
+  }, [data.timeEntries, searchQuery, projectId, selectedTags]);
+
+  const groupedEntries = groupTimeEntriesByDate(filteredEntries);
   const sortedDates = Object.keys(groupedEntries).toSorted(
     (a, b) => dayjs(b, DATE_FORMAT).valueOf() - dayjs(a, DATE_FORMAT).valueOf(),
   );
+
+  const projectOptions = data.projects.map((p) => ({
+    value: p.id,
+    label: p.name,
+  }));
+
+  const tagOptions = data.tags.map((t) => ({
+    value: t.id,
+    label: t.name,
+  }));
 
   const handleEditClick = (entry: TimeEntry) => {
     setEditingEntry(entry);
@@ -71,9 +115,71 @@ export function TimesheetPage() {
 
   return (
     <Container size="md" py="xl" className={classes.container}>
-      <Title order={2} mb="xl">
-        {_(msg`Timesheet`)}
-      </Title>
+      <Group justify="space-between" mb="xl">
+        <Title order={2}>{_(msg`Timesheet`)}</Title>
+      </Group>
+
+      {/* Filter Section */}
+      <Stack mb="xl" gap="xs">
+        <Group grow align="flex-end">
+          <TextInput
+            placeholder={_(msg`Search descriptions...`)}
+            leftSection={<IconSearch size={16} />}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.currentTarget.value)}
+            rightSection={
+              searchQuery && (
+                <IconX
+                  size={16}
+                  onClick={() => setSearchQuery('')}
+                  style={{ cursor: 'pointer' }}
+                />
+              )
+            }
+          />
+          <Select
+            placeholder={_(msg`Filter by project`)}
+            leftSection={<IconHash size={16} />}
+            data={projectOptions}
+            value={projectId}
+            onChange={setProjectId}
+            clearable
+          />
+          <MultiSelect
+            placeholder={_(msg`Filter by tags`)}
+            leftSection={<IconTags size={16} />}
+            data={tagOptions}
+            value={selectedTags}
+            onChange={setSelectedTags}
+            clearable
+            maxValues={3}
+          />
+        </Group>
+        {(searchQuery || projectId || selectedTags.length > 0) && (
+          <Group gap="xs">
+            <Badge
+              variant="dot"
+              color="gray"
+              leftSection={<IconFilter size={10} />}
+              styles={{ label: { textTransform: 'none' } }}
+            >
+              {filteredEntries.length} {_(msg`entries found`)}
+            </Badge>
+            <Text
+              size="xs"
+              c="dimmed"
+              style={{ cursor: 'pointer' }}
+              onClick={() => {
+                setSearchQuery('');
+                setProjectId(null);
+                setSelectedTags([]);
+              }}
+            >
+              {_(msg`Clear all filters`)}
+            </Text>
+          </Group>
+        )}
+      </Stack>
 
       <Stack gap="xl">
         {sortedDates.map((date) => {

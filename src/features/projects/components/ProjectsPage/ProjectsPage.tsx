@@ -1,6 +1,14 @@
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
-import { Button, Container, Grid, Group, Text, Title } from '@mantine/core';
+import {
+  Button,
+  Container,
+  Grid,
+  Group,
+  Switch,
+  Text,
+  Title,
+} from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { modals } from '@mantine/modals';
 import { IconFolderOff, IconPlus } from '@tabler/icons-react';
@@ -20,6 +28,11 @@ export function ProjectsPage() {
   const { data, addProject, updateProject, deleteProject } = useAppData();
   const [opened, { open, close }] = useDisclosure(false);
   const [editingProject, setEditingProject] = useState<Project | null>(null);
+  const [showArchived, setShowArchived] = useState(false);
+
+  const filteredProjects = data.projects.filter(
+    (p) => showArchived || p.isActive,
+  );
 
   const handleEdit = (project: Project) => {
     setEditingProject(project);
@@ -62,12 +75,20 @@ export function ProjectsPage() {
     <Container size="lg" py="xl" className={classes.container}>
       <Group justify="space-between" mb="xl">
         <Title order={2}>{_(msg`Projects`)}</Title>
-        <Button leftSection={<IconPlus size={20} />} onClick={handleAddNew}>
-          {_(msg`New Project`)}
-        </Button>
+        <Group>
+          <Switch
+            label={_(msg`Show Archived`)}
+            checked={showArchived}
+            onChange={(event) => setShowArchived(event.currentTarget.checked)}
+            size="sm"
+          />
+          <Button leftSection={<IconPlus size={20} />} onClick={handleAddNew}>
+            {_(msg`New Project`)}
+          </Button>
+        </Group>
       </Group>
 
-      {data.projects.length === 0 ? (
+      {filteredProjects.length === 0 ? (
         <Container size="sm" py="xl">
           <Group
             justify="center"
@@ -85,7 +106,7 @@ export function ProjectsPage() {
         </Container>
       ) : (
         <Grid>
-          {data.projects.map((project) => {
+          {filteredProjects.map((project) => {
             const projectEntries = data.timeEntries.filter(
               (e) => e.projectId === project.id,
             );

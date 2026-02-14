@@ -9,7 +9,19 @@ pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_fs::init())
+        .plugin(tauri_plugin_notification::init())
+        .plugin(tauri_plugin_global_shortcut::Builder::new()
+            .with_handler(|app, shortcut, event| {
+                if shortcut.to_string() == "alt+shift+s" && event.state() == tauri_plugin_global_shortcut::ShortcutState::Pressed {
+                    let _ = app.emit("shortcut-event", "toggle-timer");
+                }
+            })
+            .build()
+        )
         .setup(|app| {
+            use tauri_plugin_global_shortcut::ShortcutGraphExt;
+            app.global_shortcut().register("Alt+Shift+S").unwrap();
+
             let quit_i = MenuItem::with_id(app, "quit", "Quit Chronify", true, None::<&str>)?;
             let show_i = MenuItem::with_id(app, "show", "Show Window", true, None::<&str>)?;
             let hide_i = MenuItem::with_id(app, "hide", "Hide Window", true, None::<&str>)?;
@@ -39,6 +51,13 @@ pub fn run() {
                 .build(app)?;
 
             Ok(())
+        })
+        .on_window_event(|window, event| match event {
+            tauri::WindowEvent::CloseRequested { api, .. } => {
+                window.hide().unwrap();
+                api.prevent_close();
+            }
+            _ => {}
         })
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

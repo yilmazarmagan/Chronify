@@ -12,6 +12,8 @@
     "fs:allow-write-text-file",
     "fs:allow-mkdir",
     "fs:allow-app-meta",
+    "notification:default",
+    "global-shortcut:default",
     {
       "identifier": "fs:scope",
       "allow": [

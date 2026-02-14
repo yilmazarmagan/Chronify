@@ -29,6 +29,8 @@
     "@tabler/icons-react": "3.30.0",
     "@tauri-apps/api": "2.2.0",
     "@tauri-apps/plugin-fs": "2.2.0",
+    "@tauri-apps/plugin-global-shortcut": "^2.3.1",
+    "@tauri-apps/plugin-notification": "^2.3.3",
     "@tauri-apps/plugin-opener": "2.2.5",
     "chroma-js": "^3.2.0",
     "dayjs": "1.11.13",

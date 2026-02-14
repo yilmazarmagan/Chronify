@@ -1,42 +1,104 @@
 .controls {
-  margin-top: 2rem;
   justify-content: center;
+  gap: 1.25rem;
 }
 
-.mainButton {
+/* Shared button base */
+.mainButton,
+.secondaryButton {
+  position: relative;
+  overflow: hidden;
+  border: none;
   transition:
-    transform 0.1s ease,
-    filter 0.2s ease;
+    transform 0.15s ease,
+    box-shadow 0.3s ease;
+
+  /* Shimmer overlay */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      transparent 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
 
   &:hover {
-    transform: scale(1.05);
-    filter: brightness(1.1);
+    transform: scale(1.08);
   }
 
   &:active {
-    transform: scale(0.95);
+    transform: scale(0.94);
+  }
+}
+
+/* Main action button — start / pause / resume */
+.mainButton {
+  width: 72px !important;
+  height: 72px !important;
+  min-width: 72px;
+  min-height: 72px;
+  box-shadow:
+    0 4px 14px rgba(18, 184, 134, 0.3),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    box-shadow:
+      0 6px 20px rgba(18, 184, 134, 0.4),
+      0 2px 6px rgba(0, 0, 0, 0.12);
   }
 
   &[disabled] {
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: not-allowed;
     transform: none;
     filter: grayscale(1);
+    box-shadow: none;
   }
 }
 
-.secondaryButton {
-  transition:
-    transform 0.1s ease,
-    background-color 0.2s ease;
+/* Pause button gets yellow shadow */
+.pauseButton {
+  box-shadow:
+    0 4px 14px rgba(250, 176, 5, 0.3),
+    0 1px 3px rgba(0, 0, 0, 0.1);
 
   &:hover {
-    transform: scale(1.05);
-    background-color: var(--mantine-color-red-filled-hover);
-    color: var(--mantine-color-white);
+    box-shadow:
+      0 6px 20px rgba(250, 176, 5, 0.4),
+      0 2px 6px rgba(0, 0, 0, 0.12);
+  }
+}
+
+/* Stop button — outlined/ghost style */
+.secondaryButton {
+  width: 52px !important;
+  height: 52px !important;
+  min-width: 52px;
+  min-height: 52px;
+  background: transparent !important;
+  border: 2px solid var(--mantine-color-red-5) !important;
+  color: var(--mantine-color-red-5) !important;
+  box-shadow: 0 2px 8px rgba(224, 49, 49, 0.15);
+
+  &::after {
+    display: none;
+  }
+
+  &:hover {
+    background: var(--mantine-color-red-5) !important;
+    color: var(--mantine-color-white) !important;
+    box-shadow:
+      0 4px 14px rgba(224, 49, 49, 0.35),
+      0 2px 6px rgba(0, 0, 0, 0.1);
   }
 
   &:active {
-    transform: scale(0.95);
+    background: var(--mantine-color-red-7) !important;
   }
 }

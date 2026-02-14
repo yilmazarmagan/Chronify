@@ -144,8 +144,60 @@ export function TimerProvider({ children }: { children: ReactNode }) {
   );
 
   useEffect(() => {
-    return () => clearTimer();
-  }, [clearTimer]);
+    let unlisten: (() => void) | null = null;
+
+    async function setupShortcut() {
+      // @ts-ignore - Tauri API
+      const { listen } = await import('@tauri-apps/api/event');
+      // @ts-ignore - Tauri API
+      const { notifications } = await import('@mantine/notifications');
+
+      unlisten = await listen('shortcut-event', (event: any) => {
+        if (event.payload === 'toggle-timer') {
+          // Accessing refs/state via callback to avoid closure staleness
+          setStatus((currentStatus) => {
+            if (currentStatus === TimerStatusEnum.Idle) {
+              setMetadataState((currentMetadata) => {
+                if (
+                  currentMetadata.projectId &&
+                  currentMetadata.description.trim()
+                ) {
+                  start(
+                    currentMetadata.projectId,
+                    currentMetadata.description,
+                    currentMetadata.tags,
+                  );
+                } else {
+                  notifications.show({
+                    title: 'Timer Error',
+                    message:
+                      'Please select a project and enter description first.',
+                    color: 'red',
+                    autoClose: 3000,
+                  });
+                }
+                return currentMetadata;
+              });
+              return currentStatus; // State updated inside start
+            } else if (currentStatus === TimerStatusEnum.Running) {
+              pause();
+              return TimerStatusEnum.Paused;
+            } else if (currentStatus === TimerStatusEnum.Paused) {
+              resume();
+              return TimerStatusEnum.Running;
+            }
+            return currentStatus;
+          });
+        }
+      });
+    }
+
+    setupShortcut();
+
+    return () => {
+      if (unlisten) unlisten();
+    };
+  }, [start, pause, resume]);
 
   return (
     <TimerContext.Provider

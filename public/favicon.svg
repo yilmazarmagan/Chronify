@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#1A1B1E"/>
+  <g transform="translate(256,276)">
+    <!-- Clock circle -->
+    <circle cx="0" cy="0" r="150" fill="none" stroke="#E03131" stroke-width="32"/>
+    <!-- C-shape gap (top-right) -->
+    <path d="M 106,-106 A 150,150 0 0,0 150,0" fill="none" stroke="#1A1B1E" stroke-width="40"/>
+    <!-- Stopwatch button -->
+    <rect x="-16" y="-190" width="32" height="40" rx="8" fill="#E03131"/>
+    <!-- Minute hand -->
+    <line x1="0" y1="0" x2="70" y2="-70" stroke="#E03131" stroke-width="16" stroke-linecap="round"/>
+    <!-- Hour hand -->
+    <line x1="0" y1="0" x2="-40" y2="50" stroke="#E03131" stroke-width="16" stroke-linecap="round"/>
+    <!-- Center dot -->
+    <circle cx="0" cy="0" r="12" fill="#E03131"/>
+  </g>
+</svg>

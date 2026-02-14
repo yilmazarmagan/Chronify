@@ -104,8 +104,8 @@ export function TimerPage() {
     <Container size="sm" py="xl" className={classes.container}>
       <Stack gap="xl" align="center">
         {/* Input Section */}
-        <Stack w="100%" gap="xs">
-          <Group w="100%" align="flex-end" className={classes.inputGroup}>
+        <Stack w="100%" gap="xs" maw={600} mx="auto">
+          <Group w="100%" align="flex-end" wrap="nowrap">
             <TextInput
               placeholder={_(msg`What are you working on?`)}
               value={activeEntry.description}
@@ -146,7 +146,7 @@ export function TimerPage() {
             onCreate={handleCreateTag}
             leftSection={<IconTags size={16} />}
             variant="filled"
-            size="sm"
+            size="md"
             comboboxProps={{
               transitionProps: { transition: 'pop', duration: 200 },
             }}

@@ -1,5 +1,5 @@
 /* Global stiller */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap');
 
 html,
 body,
@@ -20,10 +20,18 @@ body,
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--mantine-color-dark-4);
+  background: rgba(0, 0, 0, 0.15);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+[data-mantine-color-scheme='dark'] ::-webkit-scrollbar-thumb {
+  background: var(--mantine-color-dark-4);
+}
+
+[data-mantine-color-scheme='dark'] ::-webkit-scrollbar-thumb:hover {
   background: var(--mantine-color-dark-3);
 }

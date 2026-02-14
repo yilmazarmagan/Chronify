@@ -426,6 +426,7 @@ export function buildTheme(primaryColor: string) {
 
 - [x] Create project (name + color)
 - [x] Edit / delete / archive project
+- [x] Project filtering (Active vs Archived toggle)
 - [x] Per-project time statistics (total duration)
 
 ### ✅ Phase 4 — Reporting & Export
@@ -444,8 +445,9 @@ export function buildTheme(primaryColor: string) {
 - [x] Idle reminder (dynamic notification threshold)
 - [x] System Tray support (Tauri v2)
 - [x] Version Display (sidebar)
-- [ ] App icon & splash screen
-- [ ] macOS + Windows build & distribution
+- [x] Search & Filter in Timesheet
+- [x] App icon & splash screen
+- [x] macOS + Windows build & distribution (GitHub Actions CI/CD)
 
 ---
 
@@ -569,3 +571,9 @@ npx lingui compile        # Compile translation catalogs
 | 2026-02-14 | Color palette: Added user-selectable primary color via @mantine/colors-generator. Default: tomato 🍅 |
 | 2026-02-14 | Project setup complete. Lingui i18n (en/tr), component-per-folder structure, 150 line limit added.   |
 | 2026-02-14 | Converted ai-context.md to English (global project language).                                        |
+| 2026-02-14 | Fixed @types alias conflict, internationalized sidebar, and added project archiving filter.          |
+| 2026-02-14 | Added Search and filtering capabilities to the Timesheet page.                                       |
+| 2026-02-14 | Custom app icon (Chronify stopwatch/C-shape), splash screen, favicon, and all Tauri icon formats.    |
+| 2026-02-14 | GitHub Actions CI/CD: release.yml (tag-triggered multi-platform build) + ci.yml (PR build test).     |
+| 2026-02-14 | Integrated `tauri-plugin-notification` for native OS notifications in Idle Reminder.                 |
+| 2026-02-14 | Global Shortcut: Alt+Shift+S registered to toggle timer from anywhere; Window hide on close added.   |

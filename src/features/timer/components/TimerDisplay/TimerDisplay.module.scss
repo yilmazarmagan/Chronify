@@ -1,3 +1,10 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
 .container {
   position: relative;
   width: 260px;
@@ -6,43 +13,123 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  transition: filter 0.4s ease;
 }
 
-/* Glow effect when running */
-.running {
-  filter: drop-shadow(0 0 24px rgba(18, 184, 134, 0.35));
+/* Outer decorative ring — subtle gradient border */
+.outerRing {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(
+    135deg,
+    var(--mantine-color-gray-2),
+    transparent 40%,
+    transparent 60%,
+    var(--mantine-color-gray-2)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.5;
+  transition: opacity 0.6s ease;
 }
 
-.paused {
-  filter: drop-shadow(0 0 16px rgba(250, 176, 5, 0.25));
+[data-mantine-color-scheme='dark'] .outerRing {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08),
+    transparent 40%,
+    transparent 60%,
+    rgba(255, 255, 255, 0.08)
+  );
 }
 
-/* SVG Ring */
-.ring {
+.running .outerRing {
+  background: conic-gradient(from 0deg, #12b886, #20c997, #38d9a9, #12b886);
+  opacity: 0.6;
+  animation: ringRotate 4s linear infinite;
+}
+
+.paused .outerRing {
+  background: conic-gradient(from 0deg, #fab005, #fcc419, #ffd43b, #fab005);
+  opacity: 0.4;
+  animation: ringRotate 6s linear infinite;
+}
+
+@keyframes ringRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Main circle background */
+.circleBg {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  border-radius: 50%;
+  background: var(--mantine-color-gray-0);
+  border: 1.5px solid var(--mantine-color-gray-2);
+  transition: all 0.5s ease;
 }
 
-.trackCircle {
-  fill: none;
-  stroke: var(--mantine-color-dark-5);
-  stroke-width: 4;
+[data-mantine-color-scheme='dark'] .circleBg {
+  background: var(--mantine-color-dark-7);
+  border-color: var(--mantine-color-dark-5);
+}
+
+.running .circleBg {
+  background: rgba(18, 184, 134, 0.04);
+  border-color: rgba(18, 184, 134, 0.15);
+}
+
+[data-mantine-color-scheme='dark'] .running .circleBg {
+  background: rgba(18, 184, 134, 0.06);
+  border-color: rgba(18, 184, 134, 0.2);
+}
+
+.paused .circleBg {
+  background: rgba(250, 176, 5, 0.04);
+  border-color: rgba(250, 176, 5, 0.12);
+}
+
+[data-mantine-color-scheme='dark'] .paused .circleBg {
+  background: rgba(250, 176, 5, 0.06);
+  border-color: rgba(250, 176, 5, 0.15);
+}
+
+/* SVG Progress Ring */
+.ring {
+  position: absolute;
+  inset: 8px;
+  width: calc(100% - 16px);
+  height: calc(100% - 16px);
 }
 
 .progressCircle {
   fill: none;
-  stroke: var(--mantine-color-dark-4);
-  stroke-width: 4;
-  stroke-dasharray: 565.48;
-  stroke-dashoffset: 565.48;
+  stroke: var(--mantine-color-gray-2);
+  stroke-width: 3;
+  stroke-dasharray: 502.65;
+  stroke-dashoffset: 502.65;
   stroke-linecap: round;
+  transform: rotate(-90deg);
   transform-origin: center;
   transition:
-    stroke 0.4s ease,
-    stroke-dashoffset 0.6s ease;
+    stroke 0.5s ease,
+    stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-mantine-color-scheme='dark'] .progressCircle {
+  stroke: var(--mantine-color-dark-5);
 }
 
 .running .progressCircle {
@@ -52,21 +139,7 @@
 
 .paused .progressCircle {
   stroke: #fab005;
-  stroke-dashoffset: 140;
-}
-
-/* Spinning animation for running state */
-.spinning {
-  animation: rotate 8s linear infinite;
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(-90deg);
-  }
-  to {
-    transform: rotate(270deg);
-  }
+  stroke-dashoffset: 125;
 }
 
 /* Time digits */
@@ -79,35 +152,141 @@
   user-select: none;
 }
 
-.digits {
-  font-family: "JetBrains Mono", "SF Mono", "Fira Code", "Cascadia Code", monospace;
-  font-size: 3rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: var(--mantine-color-text);
+.digit {
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-size: 2.8rem;
+  font-weight: 300;
+  letter-spacing: -1px;
+  color: var(--mantine-color-gray-8);
   font-variant-numeric: tabular-nums;
   line-height: 1;
+  transition: color 0.4s ease;
+}
+
+[data-mantine-color-scheme='dark'] .digit {
+  color: var(--mantine-color-gray-2);
+}
+
+.running .digit {
+  color: var(--mantine-color-black);
+  font-weight: 300;
+}
+
+[data-mantine-color-scheme='dark'] .running .digit {
+  color: var(--mantine-color-white);
 }
 
 .separator {
-  font-family: "JetBrains Mono", "SF Mono", "Fira Code", monospace;
-  font-size: 2.5rem;
-  font-weight: 300;
-  color: var(--mantine-color-dimmed);
-  opacity: 0.6;
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-size: 2.4rem;
+  font-weight: 200;
+  color: var(--mantine-color-gray-4);
   line-height: 1;
+  transition: color 0.4s ease;
+}
+
+[data-mantine-color-scheme='dark'] .separator {
+  color: var(--mantine-color-dark-3);
 }
 
 .running .separator {
-  animation: blink 1s ease-in-out infinite;
+  animation: blink 1.2s ease-in-out infinite;
+  color: #12b886;
+}
+
+.paused .separator {
+  color: #fab005;
+}
+
+/* Status badge below the timer */
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: all 0.4s ease;
+  background: var(--mantine-color-gray-1);
+  color: var(--mantine-color-gray-5);
+}
+
+[data-mantine-color-scheme='dark'] .statusBadge {
+  background: var(--mantine-color-dark-6);
+  color: var(--mantine-color-dark-2);
+}
+
+.running .statusBadge {
+  background: rgba(18, 184, 134, 0.1);
+  color: #12b886;
+}
+
+[data-mantine-color-scheme='dark'] .running .statusBadge {
+  background: rgba(18, 184, 134, 0.12);
+}
+
+.paused .statusBadge {
+  background: rgba(250, 176, 5, 0.1);
+  color: #e8a205;
+}
+
+[data-mantine-color-scheme='dark'] .paused .statusBadge {
+  background: rgba(250, 176, 5, 0.12);
+  color: #fab005;
+}
+
+/* Pulsing dot indicator */
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mantine-color-gray-4);
+  transition: background 0.4s ease;
+}
+
+[data-mantine-color-scheme='dark'] .statusDot {
+  background: var(--mantine-color-dark-3);
+}
+
+.running .statusDot {
+  background: #12b886;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.paused .statusDot {
+  background: #fab005;
+  animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes blink {
   0%,
   100% {
-    opacity: 0.6;
+    opacity: 1;
   }
   50% {
     opacity: 0.15;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.7);
   }
 }
