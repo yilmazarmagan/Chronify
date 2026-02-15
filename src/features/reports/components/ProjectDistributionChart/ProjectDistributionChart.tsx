@@ -1,7 +1,7 @@
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { PieChart } from '@mantine/charts';
-import { Paper, Text, Title } from '@mantine/core';
+import { Box, Paper, Text, Title } from '@mantine/core';
 import classes from './ProjectDistributionChart.module.scss';
 
 interface ProjectChartItem {
@@ -25,7 +25,7 @@ export function ProjectDistributionChart({
         {_(msg`Project Distribution`)}
       </Title>
       {data.length > 0 ? (
-        <div className={classes.chartContainer}>
+        <Box className={classes.chartContainer}>
           <PieChart
             withTooltip
             tooltipDataSource="segment"
@@ -34,7 +34,7 @@ export function ProjectDistributionChart({
             mx="auto" // Center
             withLabels
           />
-        </div>
+        </Box>
       ) : (
         <Text c="dimmed" ta="center" py="xl">
           {_(msg`No data available`)}

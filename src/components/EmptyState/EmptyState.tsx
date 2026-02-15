@@ -1,4 +1,4 @@
-import { Button, Center, Stack, Text, Title } from '@mantine/core';
+import { Box, Button, Center, Stack, Text, Title } from '@mantine/core';
 import { IconPlus } from '@tabler/icons-react';
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
@@ -21,7 +21,7 @@ export function EmptyState({
   return (
     <Center py={100}>
       <Stack align="center" gap="md" maw={400} ta="center">
-        <div style={{ opacity: 0.6, fontSize: 0 }}>{icon}</div>
+        <Box style={{ opacity: 0.6, fontSize: 0 }}>{icon}</Box>
         <Stack gap={4}>
           <Title order={3}>{title}</Title>
           <Text c="dimmed" size="sm">

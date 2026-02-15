@@ -1,7 +1,7 @@
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { AreaChart } from '@mantine/charts';
-import { Paper, Text, Title } from '@mantine/core';
+import { Box, Paper, Text, Title } from '@mantine/core';
 import classes from './DailyActivityChart.module.scss';
 
 interface DailyActivityItem {
@@ -22,7 +22,7 @@ export function DailyActivityChart({ data }: DailyActivityChartProps) {
         {_(msg`Daily Activity`)}
       </Title>
       {data.length > 0 ? (
-        <div className={classes.chartContainer}>
+        <Box className={classes.chartContainer}>
           <AreaChart
             h={300}
             data={data}
@@ -34,7 +34,7 @@ export function DailyActivityChart({ data }: DailyActivityChartProps) {
             withLegend
             unit="h"
           />
-        </div>
+        </Box>
       ) : (
         <Text c="dimmed" ta="center" py="xl">
           {_(msg`No data available`)}

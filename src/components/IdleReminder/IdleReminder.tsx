@@ -34,6 +34,26 @@ export function IdleReminder() {
   }, [idle]);
 
   useEffect(() => {
+    // Request permission on mount so it's ready for idle reminders
+    async function checkPermission() {
+      // Check if we're running inside Tauri
+      if (!window.__TAURI_INTERNALS__) {
+        return;
+      }
+
+      try {
+        const granted = await isPermissionGranted();
+        if (!granted) {
+          await requestPermission();
+        }
+      } catch (err) {
+        console.error('Failed to request notification permission:', err);
+      }
+    }
+    checkPermission();
+  }, []);
+
+  useEffect(() => {
     // If user becomes idle and timer is not running
     if (
       idle &&
@@ -53,6 +73,11 @@ export function IdleReminder() {
 }
 
 async function sendSystemNotification(title: string, body: string) {
+  // Check if we're running inside Tauri
+  if (!window.__TAURI_INTERNALS__) {
+    return;
+  }
+
   try {
     let permissionGranted = await isPermissionGranted();
 
@@ -65,7 +90,6 @@ async function sendSystemNotification(title: string, body: string) {
       sendNotification({ title, body });
     }
   } catch {
-    // Silently fail — e.g. running in dev browser where Tauri API isn't available
     console.warn('System notification not available');
   }
 }

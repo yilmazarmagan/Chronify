@@ -1,19 +1,20 @@
-import { Container, Grid, Skeleton } from '@mantine/core';
-import { useEffect, useState } from 'react';
-import { IconChartBar } from '@tabler/icons-react';
+import { EmptyState } from '@components/EmptyState';
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
-import { EmptyState } from '@components/EmptyState';
-import { DailyActivityChart } from '../DailyActivityChart';
-import { ProjectDistributionChart } from '../ProjectDistributionChart';
-import { ReportsHeader } from '../ReportsHeader';
-import { StatsCards } from '../StatsCards';
-import { useReportsData } from '../../hooks/useReportsData';
+import { Container, Grid, Skeleton } from '@mantine/core';
+import { notifications } from '@mantine/notifications';
+import { IconChartBar, IconCheck } from '@tabler/icons-react';
+import { useEffect, useState } from 'react';
+import { useAppData } from '../../../../providers/context';
 import {
   exportTimeEntriesToCSV,
   exportTimeEntriesToPDF,
 } from '../../../../utils/export.utils';
-import { useAppData } from '../../../../providers/context';
+import { useReportsData } from '../../hooks/useReportsData';
+import { DailyActivityChart } from '../DailyActivityChart';
+import { ProjectDistributionChart } from '../ProjectDistributionChart';
+import { ReportsHeader } from '../ReportsHeader';
+import { StatsCards } from '../StatsCards';
 import classes from './ReportsPage.module.scss';
 
 export function ReportsPage() {
@@ -45,6 +46,12 @@ export function ReportsPage() {
       data.projects,
       selectedProject?.name,
     );
+    notifications.show({
+      title: _(msg`Export Successful`),
+      message: _(msg`CSV report has been downloaded to your downloads folder.`),
+      color: 'teal',
+      icon: <IconCheck size={16} />,
+    });
   };
 
   const handleExportPDF = () => {
@@ -56,6 +63,12 @@ export function ReportsPage() {
       data.projects,
       selectedProject?.name,
     );
+    notifications.show({
+      title: _(msg`Export Successful`),
+      message: _(msg`PDF report has been downloaded to your downloads folder.`),
+      color: 'teal',
+      icon: <IconCheck size={16} />,
+    });
   };
 
   // Defer heavy chart rendering to ensure smooth navigation

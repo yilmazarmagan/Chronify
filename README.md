@@ -3,7 +3,7 @@
 **Track. Log. Export.**  
 Chronify is a premium, lightweight desktop application designed for professionals who want to track their work time without the complexity of cloud-based tools. Everything is stored locally on your machine—no account, no backend, no compromises on privacy.
 
-![Version](https://img.shields.io/badge/version-0.1.0-tomato)
+![Version](https://img.shields.io/badge/version-0.1.6-tomato)
 ![Tauri](https://img.shields.io/badge/built%20with-Tauri%20v2-blue)
 ![React](https://img.shields.io/badge/frontend-React%20%2B%20Vite-61dafb)
 ![Mantine](https://img.shields.io/badge/ui-Mantine%20v7-339af0)
@@ -107,6 +107,16 @@ Once the dependencies above are met, follow these steps to get Chronify running:
    npm run tauri build
    ```
    _The executable (DMG, MSI, or AppImage) will be found in `src-tauri/target/release/bundle/`._
+
+---
+
+##  macOS Troubleshooting
+
+If you encounter the error **"Chronify.app is damaged and can't be opened"** on macOS, it is likely due to the application being unsigned. You can resolve this by running the following command in your terminal:
+
+```bash
+sudo xattr -rd com.apple.quarantine /Applications/Chronify.app
+```
 
 ---
 

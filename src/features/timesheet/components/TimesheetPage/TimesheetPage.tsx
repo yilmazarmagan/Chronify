@@ -1,7 +1,9 @@
+import { EmptyState } from '@components/EmptyState';
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import {
   Badge,
+  Box,
   Container,
   Group,
   MultiSelect,
@@ -14,7 +16,6 @@ import {
 import { useDisclosure } from '@mantine/hooks';
 import {
   IconCalendarOff,
-  IconFilter,
   IconFolderPlus,
   IconHash,
   IconSearch,
@@ -23,7 +24,6 @@ import {
 } from '@tabler/icons-react';
 import dayjs from 'dayjs';
 import { useMemo, useState } from 'react';
-import { EmptyState } from '@components/EmptyState';
 import { DATE_FORMAT, DISPLAY_DATE_FORMAT } from '../../../../constants';
 import { useAppData } from '../../../../providers/context';
 import type { TimeEntry } from '../../../../types/time-entry.types';
@@ -180,10 +180,13 @@ export function TimesheetPage() {
         {(searchQuery || projectId || selectedTags.length > 0) && (
           <Group gap="xs">
             <Badge
-              variant="dot"
-              color="gray"
-              leftSection={<IconFilter size={10} />}
-              styles={{ label: { textTransform: 'none' } }}
+              variant="outline"
+              color="teal"
+              radius="sm"
+              styles={{
+                root: { borderStyle: 'dashed', height: 28 },
+                label: { textTransform: 'none', fontWeight: 500 },
+              }}
             >
               {filteredEntries.length} {_(msg`entries found`)}
             </Badge>
@@ -212,7 +215,7 @@ export function TimesheetPage() {
           );
 
           return (
-            <div key={date}>
+            <Box key={date}>
               <Group justify="space-between" mb="sm" align="flex-end">
                 <Text fw={600} size="lg" c="dimmed">
                   {formattedDate}
@@ -246,7 +249,7 @@ export function TimesheetPage() {
                     />
                   ))}
               </Stack>
-            </div>
+            </Box>
           );
         })}
       </Stack>

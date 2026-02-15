@@ -59,11 +59,11 @@ msgid "Are you sure you want to delete all entries, projects, and settings? This
 msgstr "Tüm girişleri, projeleri ve ayarları silmek istediğinizden emin misiniz? Bu işlem geri alınamaz."
 
 #. placeholder {0}: project.name
-#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:53
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:54
 msgid "Are you sure you want to delete project \"{0}\"? This action cannot be undone."
 msgstr "\"{0}\" projesini silmek istediğinizden emin misiniz? Bu işlem geri alınamaz."
 
-#: src/components/IdleReminder/IdleReminder.tsx:46
+#: src/components/IdleReminder/IdleReminder.tsx:66
 msgid "Are you working?"
 msgstr "Çalışıyor musun?"
 
@@ -72,7 +72,7 @@ msgid "Backup Restored"
 msgstr "Yedek Geri Yüklendi"
 
 #: src/features/projects/components/ProjectModal/ProjectModal.tsx:143
-#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:57
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:58
 #: src/features/settings/components/SettingsPage/SettingsPage.tsx:62
 #: src/features/settings/components/SettingsPage/SettingsPage.tsx:106
 #: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:164
@@ -83,7 +83,7 @@ msgstr "İptal"
 msgid "Choose the primary color for the app"
 msgstr "Uygulamanın ana rengini seçin"
 
-#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:200
+#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:203
 msgid "Clear all filters"
 msgstr "Tüm filtreleri temizle"
 
@@ -104,15 +104,19 @@ msgid "Create Entry"
 msgstr "Kayıt Oluştur"
 
 #: src/features/projects/components/ProjectModal/ProjectModal.tsx:146
-#: src/features/reports/components/ReportsPage/ReportsPage.tsx:77
+#: src/features/reports/components/ReportsPage/ReportsPage.tsx:90
 #: src/features/timer/components/TimerPage/TimerPage.tsx:116
 #: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:115
 msgid "Create Project"
 msgstr "Proje Oluştur"
 
-#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:103
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:106
 msgid "Create your first project to get started."
 msgstr "Başlamak için ilk projenizi oluşturun."
+
+#: src/features/reports/components/ReportsPage/ReportsPage.tsx:51
+msgid "CSV report has been downloaded to your downloads folder."
+msgstr "CSV raporu indirme klasörünüze indirildi."
 
 #: src/features/reports/components/DailyActivityChart/DailyActivityChart.tsx:22
 msgid "Daily Activity"
@@ -131,7 +135,7 @@ msgid "Data Reset"
 msgstr "Veri Sıfırlama"
 
 #: src/features/projects/components/ProjectCard/ProjectCard.tsx:63
-#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:57
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:58
 msgid "Delete"
 msgstr "Sil"
 
@@ -139,7 +143,7 @@ msgstr "Sil"
 msgid "Delete entry"
 msgstr "Girişi sil"
 
-#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:49
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:50
 msgid "Delete Project"
 msgstr "Projeyi Sil"
 
@@ -185,7 +189,7 @@ msgid "Enter project name"
 msgstr "Proje adını girin"
 
 #: src/features/reports/components/StatsCards/StatsCards.tsx:45
-#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:188
+#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:191
 msgid "entries found"
 msgstr "kayıt bulundu"
 
@@ -204,6 +208,11 @@ msgstr "PDF olarak aktar"
 #: src/features/settings/components/SettingsPage/SettingsPage.tsx:272
 msgid "Export Backup (JSON)"
 msgstr "Yedeği Dışa Aktar (JSON)"
+
+#: src/features/reports/components/ReportsPage/ReportsPage.tsx:50
+#: src/features/reports/components/ReportsPage/ReportsPage.tsx:67
+msgid "Export Successful"
+msgstr "Dışa aktarma başarılı"
 
 #: src/features/settings/components/SettingsPage/SettingsPage.tsx:262
 msgid "Export your data for backup or import an existing backup file."
@@ -237,7 +246,7 @@ msgstr "Şimdi İçe Aktar"
 msgid "Inactive projects won't appear in the timer selection"
 msgstr "Pasif projeler zamanlayıcı seçiminde görünmez"
 
-#: src/components/IdleReminder/IdleReminder.tsx:47
+#: src/components/IdleReminder/IdleReminder.tsx:67
 msgid "It looks like you're active but haven't started the timer yet."
 msgstr "Aktif görünüyorsun ama henüz zamanlayıcıyı başlatmamışsın."
 
@@ -262,7 +271,7 @@ msgid "Name must be at least 2 characters"
 msgstr "Ad en az 2 karakter olmalıdır"
 
 #: src/features/projects/components/ProjectModal/ProjectModal.tsx:88
-#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:86
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:87
 msgid "New Project"
 msgstr "Yeni Proje"
 
@@ -279,7 +288,7 @@ msgstr "Veri yok"
 msgid "No data available"
 msgstr "Veri mevcut değil"
 
-#: src/features/reports/components/ReportsPage/ReportsPage.tsx:73
+#: src/features/reports/components/ReportsPage/ReportsPage.tsx:86
 msgid "No Data to Analyze"
 msgstr "Analiz edilecek veri yok"
 
@@ -297,13 +306,13 @@ msgstr "Henüz giriş yok"
 msgid "No entries yet for today."
 msgstr "Bugün için henüz giriş yok."
 
-#: src/components/AppLayout/AppLayout.tsx:92
+#: src/components/AppLayout/AppLayout.tsx:109
 #: src/features/timer/components/RecentEntries/RecentEntries.tsx:68
 #: src/features/timesheet/components/TimeEntryCard/TimeEntryCard.tsx:52
 msgid "No Project"
 msgstr "Proje yok"
 
-#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:100
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:103
 #: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:111
 msgid "No Projects Found"
 msgstr "Proje bulunamadı"
@@ -327,6 +336,10 @@ msgstr "Zamanlayıcıyı Duraklat"
 #: src/features/timer/components/TimerDisplay/TimerDisplay.tsx:21
 msgid "Paused"
 msgstr "Duraklatıldı"
+
+#: src/features/reports/components/ReportsPage/ReportsPage.tsx:68
+msgid "PDF report has been downloaded to your downloads folder."
+msgstr "PDF raporu, indirme klasörünüze indirildi."
 
 #: src/features/reports/components/ReportsHeader/ReportsHeader.tsx:81
 msgid "Pick dates range"
@@ -369,8 +382,8 @@ msgstr "Proje Adı"
 msgid "Project Required"
 msgstr "Proje Gerekli"
 
-#: src/components/AppLayout/AppLayout.tsx:38
-#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:77
+#: src/components/AppLayout/AppLayout.tsx:47
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:78
 msgid "Projects"
 msgstr "Projeler"
 
@@ -382,12 +395,12 @@ msgstr "Hazır"
 msgid "Recording"
 msgstr "Kaydediliyor"
 
-#: src/components/AppLayout/AppLayout.tsx:39
+#: src/components/AppLayout/AppLayout.tsx:48
 #: src/features/reports/components/ReportsHeader/ReportsHeader.tsx:56
 msgid "Reports"
 msgstr "Raporlar"
 
-#: src/features/reports/components/ReportsPage/ReportsPage.tsx:75
+#: src/features/reports/components/ReportsPage/ReportsPage.tsx:88
 msgid "Reports and charts will appear here once you have projects and time entries. Create a project to get started!"
 msgstr "Raporlar ve grafikler, projeleriniz ve zaman girişleriniz olduğunda burada görünecektir. Başlamak için bir proje oluşturun!"
 
@@ -424,7 +437,7 @@ msgstr "Etiket seç"
 msgid "Set to 0 to disable."
 msgstr "Devre dışı bırakmak için 0 olarak ayarlayın."
 
-#: src/components/AppLayout/AppLayout.tsx:104
+#: src/components/AppLayout/AppLayout.tsx:122
 #: src/features/settings/components/SettingsPage/SettingsPage.tsx:124
 msgid "Settings"
 msgstr "Ayarlar"
@@ -433,7 +446,7 @@ msgstr "Ayarlar"
 msgid "Show a notification if you are active but haven't started your timer for a while."
 msgstr "Aktifseniz ancak bir süredir zamanlayıcınızı başlatmadıysanız bir bildirim gösterin."
 
-#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:80
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:81
 msgid "Show Archived"
 msgstr "Arşivlenmişleri Göster"
 
@@ -474,11 +487,11 @@ msgstr "Tema"
 msgid "This will overwrite all your current data with the backup file. This action cannot be undone."
 msgstr "Bu işlem tüm mevcut verilerinizin üzerine yedek dosyasını yazacaktır. Bu işlem geri alınamaz."
 
-#: src/components/AppLayout/AppLayout.tsx:36
+#: src/components/AppLayout/AppLayout.tsx:45
 msgid "Timer"
 msgstr "Zamanlayıcı"
 
-#: src/components/AppLayout/AppLayout.tsx:37
+#: src/components/AppLayout/AppLayout.tsx:46
 #: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:141
 msgid "Timesheet"
 msgstr "Zaman Çizelgesi"

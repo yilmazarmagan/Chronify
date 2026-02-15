@@ -1,6 +1,6 @@
 [package]
 name = "chronify"
-version = "0.1.0"
+version = "0.1.6"
 description = "Chronify — Track. Log. Export."
 authors = ["armagan"]
 edition = "2021"

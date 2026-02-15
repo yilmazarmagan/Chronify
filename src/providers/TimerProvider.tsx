@@ -156,9 +156,6 @@ export function TimerProvider({ children }: { children: ReactNode }) {
     async function setupShortcut() {
       // Check if we're running inside Tauri
       if (!window.__TAURI_INTERNALS__) {
-        console.warn(
-          'Tauri internals not found, skipping global shortcut listener.',
-        );
         return;
       }
 

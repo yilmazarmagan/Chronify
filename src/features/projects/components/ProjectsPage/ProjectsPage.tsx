@@ -5,6 +5,7 @@ import {
   Container,
   Grid,
   Group,
+  Stack,
   Switch,
   Text,
   Title,
@@ -90,19 +91,22 @@ export function ProjectsPage() {
 
       {filteredProjects.length === 0 ? (
         <Container size="sm" py="xl">
-          <Group
+          <Stack
             justify="center"
             align="center"
-            style={{ flexDirection: 'column', opacity: 0.5 }}
+            gap="md"
+            style={{ opacity: 0.5 }}
           >
             <IconFolderOff size={64} stroke={1.5} />
-            <Text size="lg" fw={500} mt="md">
-              {_(msg`No Projects Found`)}
-            </Text>
-            <Text size="sm">
-              {_(msg`Create your first project to get started.`)}
-            </Text>
-          </Group>
+            <Stack gap={4} align="center">
+              <Text size="lg" fw={500}>
+                {_(msg`No Projects Found`)}
+              </Text>
+              <Text size="sm">
+                {_(msg`Create your first project to get started.`)}
+              </Text>
+            </Stack>
+          </Stack>
         </Container>
       ) : (
         <Grid>

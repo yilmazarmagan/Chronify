@@ -295,6 +295,11 @@ export function SettingsPage() {
           </Button>
         </Group>
       </Paper>
+      <Box py="xl" style={{ textAlign: 'center' }}>
+        <Text size="xs" c="dimmed">
+          Chronify v0.1.6
+        </Text>
+      </Box>
     </Stack>
   );
 }

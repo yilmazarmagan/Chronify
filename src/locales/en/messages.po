@@ -59,11 +59,11 @@ msgid "Are you sure you want to delete all entries, projects, and settings? This
 msgstr "Are you sure you want to delete all entries, projects, and settings? This action is permanent."
 
 #. placeholder {0}: project.name
-#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:53
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:54
 msgid "Are you sure you want to delete project \"{0}\"? This action cannot be undone."
 msgstr "Are you sure you want to delete project \"{0}\"? This action cannot be undone."
 
-#: src/components/IdleReminder/IdleReminder.tsx:46
+#: src/components/IdleReminder/IdleReminder.tsx:66
 msgid "Are you working?"
 msgstr "Are you working?"
 
@@ -72,7 +72,7 @@ msgid "Backup Restored"
 msgstr "Backup Restored"
 
 #: src/features/projects/components/ProjectModal/ProjectModal.tsx:143
-#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:57
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:58
 #: src/features/settings/components/SettingsPage/SettingsPage.tsx:62
 #: src/features/settings/components/SettingsPage/SettingsPage.tsx:106
 #: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:164
@@ -83,7 +83,7 @@ msgstr "Cancel"
 msgid "Choose the primary color for the app"
 msgstr "Choose the primary color for the app"
 
-#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:200
+#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:203
 msgid "Clear all filters"
 msgstr "Clear all filters"
 
@@ -104,15 +104,19 @@ msgid "Create Entry"
 msgstr "Create Entry"
 
 #: src/features/projects/components/ProjectModal/ProjectModal.tsx:146
-#: src/features/reports/components/ReportsPage/ReportsPage.tsx:77
+#: src/features/reports/components/ReportsPage/ReportsPage.tsx:90
 #: src/features/timer/components/TimerPage/TimerPage.tsx:116
 #: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:115
 msgid "Create Project"
 msgstr "Create Project"
 
-#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:103
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:106
 msgid "Create your first project to get started."
 msgstr "Create your first project to get started."
+
+#: src/features/reports/components/ReportsPage/ReportsPage.tsx:51
+msgid "CSV report has been downloaded to your downloads folder."
+msgstr "CSV report has been downloaded to your downloads folder."
 
 #: src/features/reports/components/DailyActivityChart/DailyActivityChart.tsx:22
 msgid "Daily Activity"
@@ -131,7 +135,7 @@ msgid "Data Reset"
 msgstr "Data Reset"
 
 #: src/features/projects/components/ProjectCard/ProjectCard.tsx:63
-#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:57
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:58
 msgid "Delete"
 msgstr "Delete"
 
@@ -139,7 +143,7 @@ msgstr "Delete"
 msgid "Delete entry"
 msgstr "Delete entry"
 
-#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:49
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:50
 msgid "Delete Project"
 msgstr "Delete Project"
 
@@ -185,7 +189,7 @@ msgid "Enter project name"
 msgstr "Enter project name"
 
 #: src/features/reports/components/StatsCards/StatsCards.tsx:45
-#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:188
+#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:191
 msgid "entries found"
 msgstr "entries found"
 
@@ -204,6 +208,11 @@ msgstr "Export as PDF"
 #: src/features/settings/components/SettingsPage/SettingsPage.tsx:272
 msgid "Export Backup (JSON)"
 msgstr "Export Backup (JSON)"
+
+#: src/features/reports/components/ReportsPage/ReportsPage.tsx:50
+#: src/features/reports/components/ReportsPage/ReportsPage.tsx:67
+msgid "Export Successful"
+msgstr "Export Successful"
 
 #: src/features/settings/components/SettingsPage/SettingsPage.tsx:262
 msgid "Export your data for backup or import an existing backup file."
@@ -237,7 +246,7 @@ msgstr "Import Now"
 msgid "Inactive projects won't appear in the timer selection"
 msgstr "Inactive projects won't appear in the timer selection"
 
-#: src/components/IdleReminder/IdleReminder.tsx:47
+#: src/components/IdleReminder/IdleReminder.tsx:67
 msgid "It looks like you're active but haven't started the timer yet."
 msgstr "It looks like you're active but haven't started the timer yet."
 
@@ -262,7 +271,7 @@ msgid "Name must be at least 2 characters"
 msgstr "Name must be at least 2 characters"
 
 #: src/features/projects/components/ProjectModal/ProjectModal.tsx:88
-#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:86
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:87
 msgid "New Project"
 msgstr "New Project"
 
@@ -279,7 +288,7 @@ msgstr "No data"
 msgid "No data available"
 msgstr "No data available"
 
-#: src/features/reports/components/ReportsPage/ReportsPage.tsx:73
+#: src/features/reports/components/ReportsPage/ReportsPage.tsx:86
 msgid "No Data to Analyze"
 msgstr "No Data to Analyze"
 
@@ -297,13 +306,13 @@ msgstr "No Entries Yet"
 msgid "No entries yet for today."
 msgstr "No entries yet for today."
 
-#: src/components/AppLayout/AppLayout.tsx:92
+#: src/components/AppLayout/AppLayout.tsx:109
 #: src/features/timer/components/RecentEntries/RecentEntries.tsx:68
 #: src/features/timesheet/components/TimeEntryCard/TimeEntryCard.tsx:52
 msgid "No Project"
 msgstr "No Project"
 
-#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:100
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:103
 #: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:111
 msgid "No Projects Found"
 msgstr "No Projects Found"
@@ -327,6 +336,10 @@ msgstr "Pause Timer"
 #: src/features/timer/components/TimerDisplay/TimerDisplay.tsx:21
 msgid "Paused"
 msgstr "Paused"
+
+#: src/features/reports/components/ReportsPage/ReportsPage.tsx:68
+msgid "PDF report has been downloaded to your downloads folder."
+msgstr "PDF report has been downloaded to your downloads folder."
 
 #: src/features/reports/components/ReportsHeader/ReportsHeader.tsx:81
 msgid "Pick dates range"
@@ -369,8 +382,8 @@ msgstr "Project Name"
 msgid "Project Required"
 msgstr "Project Required"
 
-#: src/components/AppLayout/AppLayout.tsx:38
-#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:77
+#: src/components/AppLayout/AppLayout.tsx:47
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:78
 msgid "Projects"
 msgstr "Projects"
 
@@ -382,12 +395,12 @@ msgstr "Ready"
 msgid "Recording"
 msgstr "Recording"
 
-#: src/components/AppLayout/AppLayout.tsx:39
+#: src/components/AppLayout/AppLayout.tsx:48
 #: src/features/reports/components/ReportsHeader/ReportsHeader.tsx:56
 msgid "Reports"
 msgstr "Reports"
 
-#: src/features/reports/components/ReportsPage/ReportsPage.tsx:75
+#: src/features/reports/components/ReportsPage/ReportsPage.tsx:88
 msgid "Reports and charts will appear here once you have projects and time entries. Create a project to get started!"
 msgstr "Reports and charts will appear here once you have projects and time entries. Create a project to get started!"
 
@@ -424,7 +437,7 @@ msgstr "Select tags"
 msgid "Set to 0 to disable."
 msgstr "Set to 0 to disable."
 
-#: src/components/AppLayout/AppLayout.tsx:104
+#: src/components/AppLayout/AppLayout.tsx:122
 #: src/features/settings/components/SettingsPage/SettingsPage.tsx:124
 msgid "Settings"
 msgstr "Settings"
@@ -433,7 +446,7 @@ msgstr "Settings"
 msgid "Show a notification if you are active but haven't started your timer for a while."
 msgstr "Show a notification if you are active but haven't started your timer for a while."
 
-#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:80
+#: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:81
 msgid "Show Archived"
 msgstr "Show Archived"
 
@@ -474,11 +487,11 @@ msgstr "Theme"
 msgid "This will overwrite all your current data with the backup file. This action cannot be undone."
 msgstr "This will overwrite all your current data with the backup file. This action cannot be undone."
 
-#: src/components/AppLayout/AppLayout.tsx:36
+#: src/components/AppLayout/AppLayout.tsx:45
 msgid "Timer"
 msgstr "Timer"
 
-#: src/components/AppLayout/AppLayout.tsx:37
+#: src/components/AppLayout/AppLayout.tsx:46
 #: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:141
 msgid "Timesheet"
 msgstr "Timesheet"
