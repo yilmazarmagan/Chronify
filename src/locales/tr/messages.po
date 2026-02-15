@@ -29,7 +29,7 @@ msgstr "Aktif"
 msgid "Active Project"
 msgstr "Aktif Proje"
 
-#: src/features/timer/components/TimerPage/TimerPage.tsx:138
+#: src/features/timer/components/TimerPage/TimerPage.tsx:158
 msgid "Add tags..."
 msgstr "Etiket ekle..."
 
@@ -83,7 +83,7 @@ msgstr "İptal"
 msgid "Choose the primary color for the app"
 msgstr "Uygulamanın ana rengini seçin"
 
-#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:178
+#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:200
 msgid "Clear all filters"
 msgstr "Tüm filtreleri temizle"
 
@@ -104,6 +104,9 @@ msgid "Create Entry"
 msgstr "Kayıt Oluştur"
 
 #: src/features/projects/components/ProjectModal/ProjectModal.tsx:146
+#: src/features/reports/components/ReportsPage/ReportsPage.tsx:77
+#: src/features/timer/components/TimerPage/TimerPage.tsx:116
+#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:115
 msgid "Create Project"
 msgstr "Proje Oluştur"
 
@@ -145,7 +148,7 @@ msgstr "Projeyi Sil"
 msgid "Description"
 msgstr "Açıklama"
 
-#: src/features/timer/components/TimerPage/TimerPage.tsx:55
+#: src/features/timer/components/TimerPage/TimerPage.tsx:59
 msgid "Description Required"
 msgstr "Açıklama Gerekli"
 
@@ -182,7 +185,7 @@ msgid "Enter project name"
 msgstr "Proje adını girin"
 
 #: src/features/reports/components/StatsCards/StatsCards.tsx:45
-#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:166
+#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:188
 msgid "entries found"
 msgstr "kayıt bulundu"
 
@@ -206,11 +209,11 @@ msgstr "Yedeği Dışa Aktar (JSON)"
 msgid "Export your data for backup or import an existing backup file."
 msgstr "Yedeklemek için verilerinizi dışa aktarın veya mevcut bir yedekleme dosyasını içe aktarın."
 
-#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:141
+#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:163
 msgid "Filter by project"
 msgstr "Proje filtrele"
 
-#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:149
+#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:171
 msgid "Filter by tags"
 msgstr "Etiket filtrele"
 
@@ -276,11 +279,19 @@ msgstr "Veri yok"
 msgid "No data available"
 msgstr "Veri mevcut değil"
 
+#: src/features/reports/components/ReportsPage/ReportsPage.tsx:73
+msgid "No Data to Analyze"
+msgstr "Analiz edilecek veri yok"
+
 #: src/features/projects/components/ProjectCard/ProjectCard.tsx:77
 #: src/features/timer/components/RecentEntries/RecentEntries.tsx:65
 #: src/features/timesheet/components/TimeEntryCard/TimeEntryCard.tsx:48
 msgid "No description"
 msgstr "Açıklama yok"
+
+#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:127
+msgid "No Entries Yet"
+msgstr "Henüz giriş yok"
 
 #: src/features/timer/components/RecentEntries/RecentEntries.tsx:36
 msgid "No entries yet for today."
@@ -293,12 +304,13 @@ msgid "No Project"
 msgstr "Proje yok"
 
 #: src/features/projects/components/ProjectsPage/ProjectsPage.tsx:100
-msgid "No projects found"
+#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:111
+msgid "No Projects Found"
 msgstr "Proje bulunamadı"
 
-#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:108
-msgid "No time entries found"
-msgstr "Zaman girişi bulunamadı"
+#: src/features/timer/components/TimerPage/TimerPage.tsx:112
+msgid "No Projects Yet"
+msgstr "Henüz proje yok"
 
 #: src/features/settings/components/SettingsPage/SettingsPage.tsx:223
 msgid "Notifications & Reminders"
@@ -312,7 +324,7 @@ msgstr "İsteğe bağlı açıklama"
 msgid "Pause Timer"
 msgstr "Zamanlayıcıyı Duraklat"
 
-#: src/features/timer/components/TimerDisplay/TimerDisplay.tsx:23
+#: src/features/timer/components/TimerDisplay/TimerDisplay.tsx:21
 msgid "Paused"
 msgstr "Duraklatıldı"
 
@@ -328,15 +340,15 @@ msgstr "Bitiş tarihini ve saatini seçin"
 msgid "Pick start date and time"
 msgstr "Başlangıç tarihini ve saatini seçin"
 
-#: src/features/timer/components/TimerPage/TimerPage.tsx:57
+#: src/features/timer/components/TimerPage/TimerPage.tsx:61
 msgid "Please enter a description for what you are working on."
 msgstr "Lütfen ne üzerinde çalıştığınıza dair bir açıklama girin."
 
-#: src/features/timer/components/TimerPage/TimerPage.tsx:47
+#: src/features/timer/components/TimerPage/TimerPage.tsx:51
 msgid "Please select a project to start the timer."
 msgstr "Zamanlayıcıyı başlatmak için lütfen bir proje seçin."
 
-#: src/features/timer/components/TimerPage/TimerPage.tsx:121
+#: src/features/timer/components/TimerPage/TimerPage.tsx:141
 #: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:121
 msgid "Project"
 msgstr "Proje"
@@ -353,7 +365,7 @@ msgstr "Proje gereklidir"
 msgid "Project Name"
 msgstr "Proje Adı"
 
-#: src/features/timer/components/TimerPage/TimerPage.tsx:46
+#: src/features/timer/components/TimerPage/TimerPage.tsx:50
 msgid "Project Required"
 msgstr "Proje Gerekli"
 
@@ -362,11 +374,11 @@ msgstr "Proje Gerekli"
 msgid "Projects"
 msgstr "Projeler"
 
-#: src/features/timer/components/TimerDisplay/TimerDisplay.tsx:24
+#: src/features/timer/components/TimerDisplay/TimerDisplay.tsx:22
 msgid "Ready"
 msgstr "Hazır"
 
-#: src/features/timer/components/TimerDisplay/TimerDisplay.tsx:21
+#: src/features/timer/components/TimerDisplay/TimerDisplay.tsx:19
 msgid "Recording"
 msgstr "Kaydediliyor"
 
@@ -374,6 +386,10 @@ msgstr "Kaydediliyor"
 #: src/features/reports/components/ReportsHeader/ReportsHeader.tsx:56
 msgid "Reports"
 msgstr "Raporlar"
+
+#: src/features/reports/components/ReportsPage/ReportsPage.tsx:75
+msgid "Reports and charts will appear here once you have projects and time entries. Create a project to get started!"
+msgstr "Raporlar ve grafikler, projeleriniz ve zaman girişleriniz olduğunda burada görünecektir. Başlamak için bir proje oluşturun!"
 
 #: src/features/settings/components/SettingsPage/SettingsPage.tsx:294
 msgid "Reset All Data"
@@ -392,7 +408,7 @@ msgstr "Zamanlayıcıyı Devam Ettir"
 msgid "Save Changes"
 msgstr "Değişiklikleri Kaydet"
 
-#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:126
+#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:148
 msgid "Search descriptions..."
 msgstr "Açıklama ara..."
 
@@ -421,10 +437,6 @@ msgstr "Aktifseniz ancak bir süredir zamanlayıcınızı başlatmadıysanız bi
 msgid "Show Archived"
 msgstr "Arşivlenmişleri Göster"
 
-#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:110
-msgid "Start the timer to track your work."
-msgstr "İşinizi takip etmek için zamanlayıcıyı başlatın."
-
 #: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:148
 msgid "Start Time"
 msgstr "Başlangıç Zamanı"
@@ -434,6 +446,7 @@ msgid "Start time is required"
 msgstr "Başlangıç zamanı gereklidir"
 
 #: src/features/timer/components/TimerControls/TimerControls.tsx:37
+#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:131
 msgid "Start Timer"
 msgstr "Zamanlayıcıyı Başlat"
 
@@ -466,7 +479,7 @@ msgid "Timer"
 msgstr "Zamanlayıcı"
 
 #: src/components/AppLayout/AppLayout.tsx:37
-#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:119
+#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:141
 msgid "Timesheet"
 msgstr "Zaman Çizelgesi"
 
@@ -486,7 +499,7 @@ msgstr "Toplam Süre"
 msgid "Week"
 msgstr "Hafta"
 
-#: src/features/timer/components/TimerPage/TimerPage.tsx:110
+#: src/features/timer/components/TimerPage/TimerPage.tsx:130
 #: src/features/timesheet/components/TimeEntryModal/TimeEntryModal.tsx:131
 msgid "What are you working on?"
 msgstr "Ne üzerinde çalışıyorsunuz?"
@@ -499,6 +512,18 @@ msgstr "Yıl"
 msgid "Yes, Reset All"
 msgstr "Evet, Hepsini Sıfırla"
 
+#: src/features/timer/components/TimerPage/TimerPage.tsx:114
+msgid "You need at least one project to start tracking time. Create your first project to get things moving!"
+msgstr "Zaman takibine başlamak için en az bir projeye ihtiyacınız var. İşleri başlatmak için ilk projenizi oluşturun!"
+
+#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:113
+msgid "You need projects before you can see your work history. Start by creating one."
+msgstr "Çalışma geçmişinizi görebilmek için projelere ihtiyacınız var. Bir tane oluşturarak başlayın."
+
 #: src/features/settings/components/SettingsPage/SettingsPage.tsx:76
 msgid "Your data has been successfully imported."
 msgstr "Verileriniz başarıyla içe aktarıldı."
+
+#: src/features/timesheet/components/TimesheetPage/TimesheetPage.tsx:129
+msgid "Your time entries will show up here. Start the timer to track your productivity!"
+msgstr "Zaman girişleriniz burada görünecektir. Verimliliğinizi takip etmek için zamanlayıcıyı başlatın!"

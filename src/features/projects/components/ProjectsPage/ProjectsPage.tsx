@@ -97,7 +97,7 @@ export function ProjectsPage() {
           >
             <IconFolderOff size={64} stroke={1.5} />
             <Text size="lg" fw={500} mt="md">
-              {_(msg`No projects found`)}
+              {_(msg`No Projects Found`)}
             </Text>
             <Text size="sm">
               {_(msg`Create your first project to get started.`)}

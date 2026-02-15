@@ -1,8 +1,9 @@
 use tauri::{
     menu::{Menu, MenuItem},
     tray::TrayIconBuilder,
-    Manager,
+    Emitter, Manager,
 };
+use tauri_plugin_global_shortcut::GlobalShortcutExt;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -19,7 +20,6 @@ pub fn run() {
             .build()
         )
         .setup(|app| {
-            use tauri_plugin_global_shortcut::ShortcutGraphExt;
             app.global_shortcut().register("Alt+Shift+S").unwrap();
 
             let quit_i = MenuItem::with_id(app, "quit", "Quit Chronify", true, None::<&str>)?;
