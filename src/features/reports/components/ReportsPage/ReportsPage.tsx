@@ -1,5 +1,9 @@
 import { Container, Grid, Skeleton } from '@mantine/core';
 import { useEffect, useState } from 'react';
+import { IconChartBar } from '@tabler/icons-react';
+import { msg } from '@lingui/core/macro';
+import { useLingui } from '@lingui/react';
+import { EmptyState } from '@components/EmptyState';
 import { DailyActivityChart } from '../DailyActivityChart';
 import { ProjectDistributionChart } from '../ProjectDistributionChart';
 import { ReportsHeader } from '../ReportsHeader';
@@ -13,6 +17,7 @@ import { useAppData } from '../../../../providers/context';
 import classes from './ReportsPage.module.scss';
 
 export function ReportsPage() {
+  const { _ } = useLingui();
   const { data } = useAppData();
   const {
     rangeType,
@@ -29,12 +34,28 @@ export function ReportsPage() {
     mostActiveProject,
   } = useReportsData();
 
+  const hasProjects = data.projects.length > 0;
+
   const handleExportCSV = () => {
-    exportTimeEntriesToCSV(filteredEntries, data.projects);
+    const selectedProject = data.projects.find(
+      (p) => p.id === selectedProjectId,
+    );
+    exportTimeEntriesToCSV(
+      filteredEntries,
+      data.projects,
+      selectedProject?.name,
+    );
   };
 
   const handleExportPDF = () => {
-    exportTimeEntriesToPDF(filteredEntries, data.projects);
+    const selectedProject = data.projects.find(
+      (p) => p.id === selectedProjectId,
+    );
+    exportTimeEntriesToPDF(
+      filteredEntries,
+      data.projects,
+      selectedProject?.name,
+    );
   };
 
   // Defer heavy chart rendering to ensure smooth navigation
@@ -43,6 +64,22 @@ export function ReportsPage() {
     const timer = setTimeout(() => setIsReady(true), 150);
     return () => clearTimeout(timer);
   }, []);
+
+  if (!hasProjects) {
+    return (
+      <Container size="lg" py="xl" className={classes.container}>
+        <EmptyState
+          icon={<IconChartBar size={80} stroke={1.5} />}
+          title={_(msg`No Data to Analyze`)}
+          description={_(
+            msg`Reports and charts will appear here once you have projects and time entries. Create a project to get started!`,
+          )}
+          actionLabel={_(msg`Create Project`)}
+          actionLink="/projects"
+        />
+      </Container>
+    );
+  }
 
   return (
     <Container size="lg" py="xl" className={classes.container}>

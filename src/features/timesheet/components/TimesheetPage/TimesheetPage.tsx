@@ -15,6 +15,7 @@ import { useDisclosure } from '@mantine/hooks';
 import {
   IconCalendarOff,
   IconFilter,
+  IconFolderPlus,
   IconHash,
   IconSearch,
   IconTags,
@@ -22,6 +23,7 @@ import {
 } from '@tabler/icons-react';
 import dayjs from 'dayjs';
 import { useMemo, useState } from 'react';
+import { EmptyState } from '@components/EmptyState';
 import { DATE_FORMAT, DISPLAY_DATE_FORMAT } from '../../../../constants';
 import { useAppData } from '../../../../providers/context';
 import type { TimeEntry } from '../../../../types/time-entry.types';
@@ -42,6 +44,8 @@ export function TimesheetPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [projectId, setProjectId] = useState<string | null>(null);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+
+  const hasProjects = data.projects.length > 0;
 
   const filteredEntries = useMemo(() => {
     return data.timeEntries.filter((entry) => {
@@ -99,16 +103,34 @@ export function TimesheetPage() {
     close();
   };
 
+  if (!hasProjects) {
+    return (
+      <Container size="sm" py="xl" className={classes.container}>
+        <EmptyState
+          icon={<IconFolderPlus size={80} stroke={1.5} />}
+          title={_(msg`No Projects Found`)}
+          description={_(
+            msg`You need projects before you can see your work history. Start by creating one.`,
+          )}
+          actionLabel={_(msg`Create Project`)}
+          actionLink="/projects"
+        />
+      </Container>
+    );
+  }
+
   if (data.timeEntries.length === 0) {
     return (
-      <Container size="sm" py="xl" h="100%">
-        <Stack align="center" justify="center" h="100%" gap="md" opacity={0.5}>
-          <IconCalendarOff size={48} stroke={1.5} />
-          <Text size="lg" fw={500}>
-            {_(msg`No time entries found`)}
-          </Text>
-          <Text size="sm">{_(msg`Start the timer to track your work.`)}</Text>
-        </Stack>
+      <Container size="sm" py="xl" className={classes.container}>
+        <EmptyState
+          icon={<IconCalendarOff size={80} stroke={1.5} />}
+          title={_(msg`No Entries Yet`)}
+          description={_(
+            msg`Your time entries will show up here. Start the timer to track your productivity!`,
+          )}
+          actionLabel={_(msg`Start Timer`)}
+          actionLink="/"
+        />
       </Container>
     );
   }

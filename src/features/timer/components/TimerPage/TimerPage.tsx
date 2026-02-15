@@ -8,8 +8,9 @@ import { useHotkeys } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
 import { useAppData } from '@providers/context';
 import { useTimer } from '@providers/TimerProvider';
-import { IconHash, IconTags } from '@tabler/icons-react';
+import { IconFolderPlus, IconHash, IconTags } from '@tabler/icons-react';
 import dayjs from 'dayjs';
+import { EmptyState } from '@components/EmptyState';
 import { RecentEntries } from '../RecentEntries';
 import { TimerControls } from '../TimerControls';
 import { TimerDisplay } from '../TimerDisplay';
@@ -29,10 +30,13 @@ export function TimerPage() {
     setMetadata,
   } = useTimer();
 
+  const hasProjects = data.projects.length > 0;
+
   useHotkeys([
     [
       'space',
       () => {
+        if (!hasProjects) return;
         if (status === TimerStatusEnum.Idle) handleStart();
         else if (status === TimerStatusEnum.Running) pause();
         else if (status === TimerStatusEnum.Paused) resume();
@@ -99,6 +103,22 @@ export function TimerPage() {
     const newTag = addTag({ name: query, color: 'blue' }); // Default color
     return newTag.id;
   };
+
+  if (!hasProjects) {
+    return (
+      <Container size="sm" py="xl" className={classes.container}>
+        <EmptyState
+          icon={<IconFolderPlus size={80} stroke={1.5} />}
+          title={_(msg`No Projects Yet`)}
+          description={_(
+            msg`You need at least one project to start tracking time. Create your first project to get things moving!`,
+          )}
+          actionLabel={_(msg`Create Project`)}
+          actionLink="/projects"
+        />
+      </Container>
+    );
+  }
 
   return (
     <Container size="sm" py="xl" className={classes.container}>

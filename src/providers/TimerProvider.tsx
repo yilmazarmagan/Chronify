@@ -8,6 +8,8 @@ import {
   ReactNode,
 } from 'react';
 import { TimerStatusEnum } from '../enums';
+import { listen } from '@tauri-apps/api/event';
+import { notifications } from '@mantine/notifications';
 
 interface TimerContextType {
   status: TimerStatusEnum;
@@ -144,57 +146,76 @@ export function TimerProvider({ children }: { children: ReactNode }) {
   );
 
   useEffect(() => {
+    return () => clearTimer();
+  }, [clearTimer]);
+
+  useEffect(() => {
     let unlisten: (() => void) | null = null;
+    let cancelled = false;
 
     async function setupShortcut() {
-      // @ts-ignore - Tauri API
-      const { listen } = await import('@tauri-apps/api/event');
-      // @ts-ignore - Tauri API
-      const { notifications } = await import('@mantine/notifications');
+      // Check if we're running inside Tauri
+      if (!window.__TAURI_INTERNALS__) {
+        console.warn(
+          'Tauri internals not found, skipping global shortcut listener.',
+        );
+        return;
+      }
 
-      unlisten = await listen('shortcut-event', (event: any) => {
-        if (event.payload === 'toggle-timer') {
-          // Accessing refs/state via callback to avoid closure staleness
-          setStatus((currentStatus) => {
-            if (currentStatus === TimerStatusEnum.Idle) {
-              setMetadataState((currentMetadata) => {
-                if (
-                  currentMetadata.projectId &&
-                  currentMetadata.description.trim()
-                ) {
-                  start(
-                    currentMetadata.projectId,
-                    currentMetadata.description,
-                    currentMetadata.tags,
-                  );
-                } else {
-                  notifications.show({
-                    title: 'Timer Error',
-                    message:
-                      'Please select a project and enter description first.',
-                    color: 'red',
-                    autoClose: 3000,
-                  });
-                }
-                return currentMetadata;
-              });
-              return currentStatus; // State updated inside start
-            } else if (currentStatus === TimerStatusEnum.Running) {
-              pause();
-              return TimerStatusEnum.Paused;
-            } else if (currentStatus === TimerStatusEnum.Paused) {
-              resume();
-              return TimerStatusEnum.Running;
-            }
-            return currentStatus;
-          });
+      try {
+        const detach = await listen('shortcut-event', (event: any) => {
+          if (cancelled) return;
+          if (event.payload === 'toggle-timer') {
+            setStatus((currentStatus) => {
+              if (currentStatus === TimerStatusEnum.Idle) {
+                setMetadataState((currentMetadata) => {
+                  if (
+                    currentMetadata.projectId &&
+                    currentMetadata.description.trim()
+                  ) {
+                    start(
+                      currentMetadata.projectId,
+                      currentMetadata.description,
+                      currentMetadata.tags,
+                    );
+                  } else {
+                    notifications.show({
+                      title: 'Timer Error',
+                      message:
+                        'Please select a project and enter description first.',
+                      color: 'red',
+                      autoClose: 3000,
+                    });
+                  }
+                  return currentMetadata;
+                });
+                return currentStatus;
+              } else if (currentStatus === TimerStatusEnum.Running) {
+                pause();
+                return TimerStatusEnum.Paused;
+              } else if (currentStatus === TimerStatusEnum.Paused) {
+                resume();
+                return TimerStatusEnum.Running;
+              }
+              return currentStatus;
+            });
+          }
+        });
+
+        if (cancelled) {
+          detach();
+        } else {
+          unlisten = detach;
         }
-      });
+      } catch (err) {
+        console.error('Failed to setup shortcut listener:', err);
+      }
     }
 
     setupShortcut();
 
     return () => {
+      cancelled = true;
       if (unlisten) unlisten();
     };
   }, [start, pause, resume]);

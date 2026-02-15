@@ -52,6 +52,7 @@ export function downloadFile(
 export function exportTimeEntriesToCSV(
   entries: TimeEntry[],
   projects: Project[],
+  projectName?: string,
 ) {
   const csvData = entries.map((entry) => {
     const project = projects.find((p) => p.id === entry.projectId);
@@ -67,13 +68,17 @@ export function exportTimeEntriesToCSV(
   });
 
   const csv = convertToCSV(csvData);
-  const fileName = `chronify_export_${dayjs().format('YYYY-MM-DD_HHmm')}.csv`;
+  const formattedProjectName = projectName
+    ? `${projectName.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_`
+    : '';
+  const fileName = `chronify_${formattedProjectName}export_${dayjs().format('YYYY-MM-DD_HHmm')}.csv`;
   downloadFile(csv, fileName, 'text/csv;charset=utf-8;');
 }
 
 export function exportTimeEntriesToPDF(
   entries: TimeEntry[],
   projects: Project[],
+  projectName?: string,
 ) {
   const doc = new jsPDF();
   const totalDuration = entries.reduce((acc, curr) => acc + curr.duration, 0);
@@ -109,5 +114,10 @@ export function exportTimeEntriesToPDF(
     headStyles: { fillColor: [224, 49, 49] }, // Tomato primary color
   });
 
-  doc.save(`chronify_report_${dayjs().format('YYYY-MM-DD_HHmm')}.pdf`);
+  const formattedProjectName = projectName
+    ? `${projectName.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_`
+    : '';
+  doc.save(
+    `chronify_${formattedProjectName}report_${dayjs().format('YYYY-MM-DD_HHmm')}.pdf`,
+  );
 }
