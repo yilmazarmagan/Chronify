@@ -3,7 +3,7 @@
 **Track. Log. Export.**  
 Chronify is a premium, lightweight desktop application designed for professionals who want to track their work time without the complexity of cloud-based tools. Everything is stored locally on your machine—no account, no backend, no compromises on privacy.
 
-![Version](https://img.shields.io/badge/version-0.1.6-tomato)
+![Version](https://img.shields.io/badge/version-0.0.1-tomato)
 ![Tauri](https://img.shields.io/badge/built%20with-Tauri%20v2-blue)
 ![React](https://img.shields.io/badge/frontend-React%20%2B%20Vite-61dafb)
 ![Mantine](https://img.shields.io/badge/ui-Mantine%20v7-339af0)

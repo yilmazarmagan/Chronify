@@ -32,7 +32,7 @@ pub fn run() {
                 .icon(app.default_window_icon().unwrap().clone())
                 .icon_as_template(true)
                 .menu(&menu)
-                .on_menu_event(|app, event| match event.id.as_ref() {
+                .on_menu_event(|app: &tauri::AppHandle, event| match event.id.as_ref() {
                     "quit" => {
                         app.exit(0);
                     }
@@ -63,13 +63,16 @@ pub fn run() {
         .build(tauri::generate_context!())
         .expect("error while building tauri application");
 
-    app.run(|app_handle, event| match event {
-        tauri::RunEvent::Reopened => {
-            if let Some(window) = app_handle.get_webview_window("main") {
-                let _ = window.show();
-                let _ = window.set_focus();
+    app.run(|_app_handle, _event| {
+        #[cfg(target_os = "macos")]
+        match _event {
+            tauri::RunEvent::Reopen { .. } => {
+                if let Some(window) = _app_handle.get_webview_window("main") {
+                    let _ = window.show();
+                    let _ = window.set_focus();
+                }
             }
+            _ => {}
         }
-        _ => {}
     });
 }

@@ -296,8 +296,8 @@ export function SettingsPage() {
         </Group>
       </Paper>
       <Box py="xl" style={{ textAlign: 'center' }}>
-        <Text size="xs" c="dimmed">
-          Chronify v0.1.6
+        <Text size="xs" c="dimmed" ta="center" mt="xl">
+          {_(msg`Version`)} v0.0.1
         </Text>
       </Box>
     </Stack>
