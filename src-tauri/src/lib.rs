@@ -5,15 +5,24 @@ use tauri::{
 };
 use tauri_plugin_global_shortcut::GlobalShortcutExt;
 
+#[tauri::command]
+fn get_system_idle_time() -> u64 {
+    match user_idle::UserIdle::get_time() {
+        Ok(time) => time.as_milliseconds() as u64,
+        Err(_) => 0,
+    }
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     let app = tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_notification::init())
+        .invoke_handler(tauri::generate_handler![get_system_idle_time])
         .plugin(tauri_plugin_global_shortcut::Builder::new()
             .with_handler(|app, shortcut, event| {
-                if shortcut.to_string() == "alt+shift+s" && event.state() == tauri_plugin_global_shortcut::ShortcutState::Pressed {
+                if shortcut.to_string().to_lowercase() == "alt+shift+s" && event.state() == tauri_plugin_global_shortcut::ShortcutState::Pressed {
                     let _ = app.emit("shortcut-event", "toggle-timer");
                 }
             })
@@ -28,9 +37,14 @@ pub fn run() {
             
             let menu = Menu::with_items(app, &[&show_i, &hide_i, &quit_i])?;
 
+            let icon_bytes = include_bytes!("../icons/128x128.png");
+            let icon_img = image::load_from_memory(icon_bytes).unwrap().into_rgba8();
+            let (width, height) = icon_img.dimensions();
+            let icon = tauri::image::Image::new_owned(icon_img.into_raw(), width, height);
+
             let _tray = TrayIconBuilder::new()
-                .icon(app.default_window_icon().unwrap().clone())
-                .icon_as_template(true)
+                .icon(icon)
+                .icon_as_template(false)
                 .menu(&menu)
                 .on_menu_event(|app: &tauri::AppHandle, event| match event.id.as_ref() {
                     "quit" => {

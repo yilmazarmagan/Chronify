@@ -19,6 +19,7 @@ export const DEFAULT_APP_DATA: AppData = {
     locale: 'en',
     defaultView: 'timer',
     weekStartsOn: 'monday',
+    idleReminderEnabled: true,
     idleReminderMinutes: 15,
   },
   projects: [],

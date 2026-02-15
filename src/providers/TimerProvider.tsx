@@ -1,15 +1,17 @@
+import { msg } from '@lingui/core/macro';
+import { useLingui } from '@lingui/react';
+import { notifications } from '@mantine/notifications';
+import { listen } from '@tauri-apps/api/event';
 import {
   createContext,
-  useContext,
-  useState,
-  useRef,
-  useCallback,
-  useEffect,
   ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
 } from 'react';
 import { TimerStatusEnum } from '../enums';
-import { listen } from '@tauri-apps/api/event';
-import { notifications } from '@mantine/notifications';
 
 interface TimerContextType {
   status: TimerStatusEnum;
@@ -43,6 +45,7 @@ interface TimerContextType {
 const TimerContext = createContext<TimerContextType | null>(null);
 
 export function TimerProvider({ children }: { children: ReactNode }) {
+  const { _ } = useLingui();
   const [status, setStatus] = useState<TimerStatusEnum>(TimerStatusEnum.Idle);
   const [elapsed, setElapsed] = useState(0);
   const [metadata, setMetadataState] = useState<{
@@ -151,20 +154,16 @@ export function TimerProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     let unlisten: (() => void) | null = null;
-    let cancelled = false;
 
     async function setupShortcut() {
-      // Check if we're running inside Tauri
-      if (!window.__TAURI_INTERNALS__) {
-        return;
-      }
+      if (!window.__TAURI_INTERNALS__) return;
 
       try {
-        const detach = await listen('shortcut-event', (event: any) => {
-          if (cancelled) return;
+        const unlistenFn = await listen('shortcut-event', (event: any) => {
           if (event.payload === 'toggle-timer') {
             setStatus((currentStatus) => {
               if (currentStatus === TimerStatusEnum.Idle) {
+                // Check metadata inside setStatus to avoid stale closures
                 setMetadataState((currentMetadata) => {
                   if (
                     currentMetadata.projectId &&
@@ -175,23 +174,42 @@ export function TimerProvider({ children }: { children: ReactNode }) {
                       currentMetadata.description,
                       currentMetadata.tags,
                     );
+                    notifications.show({
+                      title: _(msg`Timer Started`),
+                      message: _(msg`Global shortcut activated.`),
+                      color: 'teal',
+                      autoClose: 2000,
+                    });
                   } else {
                     notifications.show({
-                      title: 'Timer Error',
-                      message:
-                        'Please select a project and enter description first.',
+                      title: _(msg`Cannot Start Timer`),
+                      message: _(
+                        msg`Select a project and create a description first.`,
+                      ),
                       color: 'red',
                       autoClose: 3000,
                     });
                   }
                   return currentMetadata;
                 });
-                return currentStatus;
+                return currentStatus; // Let start() handle status change
               } else if (currentStatus === TimerStatusEnum.Running) {
                 pause();
+                notifications.show({
+                  title: _(msg`Timer Paused`),
+                  message: _(msg`Global shortcut activated.`),
+                  color: 'yellow',
+                  autoClose: 2000,
+                });
                 return TimerStatusEnum.Paused;
               } else if (currentStatus === TimerStatusEnum.Paused) {
                 resume();
+                notifications.show({
+                  title: _(msg`Timer Resumed`),
+                  message: _(msg`Global shortcut activated.`),
+                  color: 'blue',
+                  autoClose: 2000,
+                });
                 return TimerStatusEnum.Running;
               }
               return currentStatus;
@@ -199,11 +217,7 @@ export function TimerProvider({ children }: { children: ReactNode }) {
           }
         });
 
-        if (cancelled) {
-          detach();
-        } else {
-          unlisten = detach;
-        }
+        unlisten = unlistenFn;
       } catch (err) {
         console.error('Failed to setup shortcut listener:', err);
       }
@@ -212,7 +226,6 @@ export function TimerProvider({ children }: { children: ReactNode }) {
     setupShortcut();
 
     return () => {
-      cancelled = true;
       if (unlisten) unlisten();
     };
   }, [start, pause, resume]);

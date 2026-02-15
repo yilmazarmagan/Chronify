@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/app-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chronify</title>
     <style>
@@ -34,22 +34,11 @@
       }
 
       .splash-icon {
-        width: 80px;
-        height: 80px;
+        width: 128px;
+        height: 128px;
         margin-bottom: 24px;
-        animation: splash-pulse 1.5s ease-in-out infinite;
-      }
-
-      .splash-icon circle.ring {
-        stroke-dasharray: 942;
-        stroke-dashoffset: 942;
-        animation: splash-draw 1.2s ease-out forwards;
-      }
-
-      @keyframes splash-draw {
-        to {
-          stroke-dashoffset: 0;
-        }
+        animation: splash-pulse 2s ease-in-out infinite;
+        object-fit: contain;
       }
 
       @keyframes splash-pulse {
@@ -60,7 +49,7 @@
         }
         50% {
           transform: scale(1.05);
-          opacity: 0.85;
+          opacity: 0.9;
         }
       }
 
@@ -99,42 +88,7 @@
   <body>
     <!-- Splash screen — visible before React hydration -->
     <div id="splash">
-      <svg
-        class="splash-icon"
-        viewBox="0 0 100 100"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle
-          class="ring"
-          cx="50"
-          cy="54"
-          r="36"
-          stroke="#E03131"
-          stroke-width="6"
-          stroke-linecap="round"
-        />
-        <rect x="44" y="10" width="12" height="14" rx="4" fill="#E03131" />
-        <line
-          x1="50"
-          y1="54"
-          x2="66"
-          y2="38"
-          stroke="#E03131"
-          stroke-width="5"
-          stroke-linecap="round"
-        />
-        <line
-          x1="50"
-          y1="54"
-          x2="38"
-          y2="66"
-          stroke="#E03131"
-          stroke-width="5"
-          stroke-linecap="round"
-        />
-        <circle cx="50" cy="54" r="4" fill="#E03131" />
-      </svg>
+      <img src="/app-icon.png" class="splash-icon" alt="Chronify Logo" />
       <div class="splash-title">Chroni<span>fy</span></div>
       <div class="splash-subtitle">Track · Log · Export</div>
     </div>

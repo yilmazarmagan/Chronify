@@ -4,5 +4,6 @@ export interface AppSettings {
   locale: 'en' | 'tr';
   defaultView: 'timer' | 'timesheet';
   weekStartsOn: 'monday' | 'sunday';
+  idleReminderEnabled: boolean;
   idleReminderMinutes: number;
 }

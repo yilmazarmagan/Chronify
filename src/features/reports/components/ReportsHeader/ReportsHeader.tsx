@@ -7,6 +7,7 @@ import {
   Menu,
   SegmentedControl,
   Select,
+  Stack,
   Title,
 } from '@mantine/core';
 import { DatePickerInput } from '@mantine/dates';
@@ -52,43 +53,9 @@ export function ReportsHeader({
   ];
 
   return (
-    <Group justify="space-between" align="center" mb="xl">
-      <Title order={2}>{_(msg`Reports`)}</Title>
-      <Group>
-        <SegmentedControl
-          value={rangeType}
-          onChange={onRangeTypeChange}
-          data={[
-            { label: _(msg`Today`), value: ReportRangeEnum.Today },
-            { label: _(msg`Week`), value: ReportRangeEnum.Week },
-            { label: _(msg`Month`), value: ReportRangeEnum.Month },
-            { label: _(msg`Year`), value: ReportRangeEnum.Year },
-            { label: _(msg`All`), value: ReportRangeEnum.All },
-          ]}
-        />
-
-        <Select
-          placeholder={_(msg`All Projects`)}
-          data={projectOptions}
-          value={selectedProjectId || 'all'}
-          onChange={(val) => onProjectChange(val === 'all' ? null : val)}
-          leftSection={<IconHash size={16} />}
-          w={180}
-        />
-
-        <DatePickerInput
-          type="range"
-          placeholder={_(msg`Pick dates range`)}
-          value={dateRange}
-          onChange={(val) => {
-            onDateRangeChange(val);
-            onRangeTypeSelect(ReportRangeEnum.Custom);
-          }}
-          leftSection={<IconCalendar size={16} />}
-          clearable
-          w={220}
-        />
-
+    <Stack mb="xl" gap="md">
+      <Group justify="space-between" align="center">
+        <Title order={2}>{_(msg`Reports`)}</Title>
         <Menu shadow="md" width={200} position="bottom-end">
           <Menu.Target>
             <Button variant="light" leftSection={<IconDownload size={16} />}>
@@ -113,6 +80,43 @@ export function ReportsHeader({
           </Menu.Dropdown>
         </Menu>
       </Group>
-    </Group>
+
+      <Group justify="space-between" wrap="wrap" gap="md">
+        <SegmentedControl
+          value={rangeType}
+          onChange={onRangeTypeChange}
+          data={[
+            { label: _(msg`Today`), value: ReportRangeEnum.Today },
+            { label: _(msg`Week`), value: ReportRangeEnum.Week },
+            { label: _(msg`Month`), value: ReportRangeEnum.Month },
+            { label: _(msg`Year`), value: ReportRangeEnum.Year },
+            { label: _(msg`All`), value: ReportRangeEnum.All },
+          ]}
+        />
+        <Group>
+          <Select
+            placeholder={_(msg`All Projects`)}
+            data={projectOptions}
+            value={selectedProjectId || 'all'}
+            onChange={(val) => onProjectChange(val === 'all' ? null : val)}
+            leftSection={<IconHash size={16} />}
+            w={180}
+          />
+
+          <DatePickerInput
+            type="range"
+            placeholder={_(msg`Pick dates range`)}
+            value={dateRange}
+            onChange={(val) => {
+              onDateRangeChange(val);
+              onRangeTypeSelect(ReportRangeEnum.Custom);
+            }}
+            leftSection={<IconCalendar size={16} />}
+            clearable
+            w={220}
+          />
+        </Group>
+      </Group>
+    </Stack>
   );
 }

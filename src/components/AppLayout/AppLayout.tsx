@@ -6,6 +6,7 @@ import {
   Box,
   Center,
   Group,
+  Image,
   Loader,
   Stack,
   Text,
@@ -58,13 +59,22 @@ export function AppLayout() {
       padding="lg"
     >
       <AppShell.Navbar className={classes.navbar}>
-        <Group className={classes.logo} gap={2} my="md">
-          <Text fw={900} fz={24} lts={-1}>
-            Chroni
-          </Text>
-          <Text c="primary" fw={900} fz={24} lts={-1}>
-            fy
-          </Text>
+        <Group className={classes.logo} gap={1} my="md" px="md">
+          <Image
+            src="/app-icon.png"
+            alt="Chronify"
+            width={48}
+            height={48}
+            fit="contain"
+          />
+          <Group gap={0}>
+            <Text fw={900} fz={24} lts={-1}>
+              Chroni
+            </Text>
+            <Text c="primary" fw={900} fz={24} lts={-1}>
+              fy
+            </Text>
+          </Group>
         </Group>
 
         <Stack gap={4} className={classes.navSection}>

@@ -12,6 +12,7 @@ import {
   SegmentedControl,
   SimpleGrid,
   Stack,
+  Switch,
   Text,
   Title,
 } from '@mantine/core';
@@ -224,30 +225,43 @@ export function SettingsPage() {
         </Title>
         <Stack gap="md">
           <Box>
-            <Text size="sm" fw={500} mb="xs">
-              {_(msg`Idle Reminder`)}
-            </Text>
-            <Text c="dimmed" size="xs" mb="md">
-              {_(
-                msg`Show a notification if you are active but haven't started your timer for a while.`,
-              )}
-            </Text>
-            <Group align="center">
-              <NumberInput
-                value={data.settings.idleReminderMinutes}
-                onChange={(val) =>
-                  updateSettings({ idleReminderMinutes: Number(val) || 0 })
+            <Group justify="space-between" align="center" mb="sm">
+              <Box>
+                <Text size="sm" fw={500}>
+                  {_(msg`Idle Reminder`)}
+                </Text>
+                <Text c="dimmed" size="xs">
+                  {_(
+                    msg`Show a notification if you use computer but haven't started your timer.`,
+                  )}
+                </Text>
+              </Box>
+              <Switch
+                checked={data.settings.idleReminderEnabled}
+                onChange={(event) =>
+                  updateSettings({
+                    idleReminderEnabled: event.currentTarget.checked,
+                  })
                 }
-                min={0}
-                max={60}
-                step={1}
-                w={100}
-                suffix={_(msg` min`)}
               />
-              <Text size="sm" c="dimmed">
-                {_(msg`Set to 0 to disable.`)}
-              </Text>
             </Group>
+
+            {data.settings.idleReminderEnabled && (
+              <Group align="center" mt="xs">
+                <NumberInput
+                  label={_(msg`Reminder Threshold`)}
+                  value={data.settings.idleReminderMinutes}
+                  onChange={(val) =>
+                    updateSettings({ idleReminderMinutes: Number(val) || 1 })
+                  }
+                  min={1}
+                  max={120}
+                  step={1}
+                  w={120}
+                  suffix={_(msg` min`)}
+                />
+              </Group>
+            )}
           </Box>
         </Stack>
       </Paper>
@@ -297,7 +311,7 @@ export function SettingsPage() {
       </Paper>
       <Box py="xl" style={{ textAlign: 'center' }}>
         <Text size="xs" c="dimmed" ta="center" mt="xl">
-          {_(msg`Version`)} v0.0.1
+          {_(msg`Version`)} v0.1.0
         </Text>
       </Box>
     </Stack>

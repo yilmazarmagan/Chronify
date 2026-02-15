@@ -3,11 +3,11 @@ import { MantineProvider } from '@mantine/core';
 import { ModalsProvider } from '@mantine/modals';
 import { Notifications } from '@mantine/notifications';
 import { useEffect } from 'react';
+import { IdleReminder } from './components/IdleReminder';
 import { activateLocale, i18n, type Locale } from './lib/i18n';
 import { AppDataProvider } from './providers/AppDataProvider';
-import { TimerProvider } from './providers/TimerProvider';
-import { IdleReminder } from './components/IdleReminder/IdleReminder';
 import { useAppData } from './providers/context';
+import { TimerProvider } from './providers/TimerProvider';
 import { AppRoutes } from './routes';
 import { buildTheme } from './styles/theme';
 
@@ -37,11 +37,13 @@ function ThemedApp() {
           data.settings.theme === 'auto' ? undefined : data.settings.theme
         }
       >
-        <Notifications position="top-right" />
-        <IdleReminder />
-        <ModalsProvider>
-          <AppRoutes />
-        </ModalsProvider>
+        <TimerProvider>
+          <Notifications position="top-right" />
+          <IdleReminder />
+          <ModalsProvider>
+            <AppRoutes />
+          </ModalsProvider>
+        </TimerProvider>
       </MantineProvider>
     </I18nProvider>
   );
@@ -50,9 +52,7 @@ function ThemedApp() {
 export default function App() {
   return (
     <AppDataProvider>
-      <TimerProvider>
-        <ThemedApp />
-      </TimerProvider>
+      <ThemedApp />
     </AppDataProvider>
   );
 }
